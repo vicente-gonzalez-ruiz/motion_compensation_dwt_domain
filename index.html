@@ -23,7 +23,7 @@ Transform Domain</a></h2>
 <div class='date'><span class='ecrm-1200'>January 6, 2023</span></div>
    </div>
    <h3 class='sectionHead' id='motion-estimation-in-the-critically-sampled-dwt-domain'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Motion estimation in the critically sampled DWT domain</h3>
-   <figure class='figure' id='-a-demonstration-of-the-shiftvariance-of-the-dwt-'> 
+   <figure class='figure' id='-a-demonstration-of-the-shiftvariance-of-the-dwt-as-it-can-be-seen-when-the-circle-has-been-moved-only-one-pixel-the-value-of-the-coefficients-that-correspond-to-the-circunference-of-the-circle-are-different-between-the-reference-frame-and-the-predicted-frame-similar-results-have-been-obtained-for-other-filters-see-the-notebook-httpsgithubcomvicentegonzalezruizmotioncompensationdwtdomainblobmaindwtshiftinvarianceipynbshift-invariance-in-the-dwt-domain-'> 
 
                                                                   
 
@@ -31,34 +31,96 @@ Transform Domain</a></h2>
                                                                   
 
                                                                   
-<div class='tabular'> <table class='tabular' id='TBL-2'><colgroup id='TBL-2-1g'><col id='TBL-2-1' /><col id='TBL-2-2' /><col id='TBL-2-3' /></colgroup><tr id='TBL-2-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 13 --><p class='noindent'><div style='text-align:center;'> <img src='moving_circle_000.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 14 --><p class='noindent'><div style='text-align:center;'> <img src='movement_0.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 15 --><p class='noindent'><div style='text-align:center;'> <img src='difference_0.png' /> </div>                                                                    </p></td></tr><tr id='TBL-2-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-2-1' style='white-space:nowrap; text-align:center;'> <!-- l. 16 --><p class='noindent'><div style='text-align:center;'> <img src='haar_LL.svg' /> </div>  </p> </td><td class='td11' id='TBL-2-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 17 --><p class='noindent'><div style='text-align:center;'> <img src='db5_LL.svg' /> </div>  </p> </td><td class='td11' id='TBL-2-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 18 --><p class='noindent'><div style='text-align:center;'> <img src='bior35_LL.svg' /> </div> </p></td>
-</tr><tr id='TBL-2-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 19 --><p class='noindent'><div style='text-align:center;'> <img src='haar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 20 --><p class='noindent'><div style='text-align:center;'> <img src='db5_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 21 --><p class='noindent'><div style='text-align:center;'> <img src='bior35_LH.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-2-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 22 --><p class='noindent'><div style='text-align:center;'> <img src='haar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 23 --><p class='noindent'><div style='text-align:center;'> <img src='db5_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 24 --><p class='noindent'><div style='text-align:center;'> <img src='bior35_HL.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-2-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-5-1' style='white-space:nowrap; text-align:center;'> <!-- l. 25 --><p class='noindent'><div style='text-align:center;'> <img src='haar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 26 --><p class='noindent'><div style='text-align:center;'> <img src='db5_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 27 --><p class='noindent'><div style='text-align:center;'> <img src='bior35_HH.svg' /> </div>                                                                    </p></td></tr></table>
+<div class='tabular'> <table class='tabular' id='TBL-2'><colgroup id='TBL-2-1g'><col id='TBL-2-1' /><col id='TBL-2-2' /><col id='TBL-2-3' /></colgroup><tr id='TBL-2-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 13 --><p class='noindent'><div style='text-align:center;'> <img src='frame_0_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 13 --><p class='noindent'><div style='text-align:center;'> <img src='frame_1_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 13 --><p class='noindent'><div style='text-align:center;'> <img src='frame_2_Y.png' /> </div>                                                                    </p></td></tr><tr id='TBL-2-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-2-1' style='white-space:nowrap; text-align:center;'> </td><td class='td11' id='TBL-2-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 14 --><p class='noindent'><div style='text-align:center;'> <img src='movement_0.svg' /> </div>  </p> </td><td class='td11' id='TBL-2-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 14 --><p class='noindent'><div style='text-align:center;'> <img src='movement_1.svg' /> </div> </p></td>
+</tr><tr id='TBL-2-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 15 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 15 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 15 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-2-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 16 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-2-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 16 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-2-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 16 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LH.png' /> </div> </p></td>
+</tr><tr id='TBL-2-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-5-1' style='white-space:nowrap; text-align:center;'> <!-- l. 17 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 17 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 17 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HL.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-6-1' style='white-space:nowrap; text-align:center;'> <!-- l. 18 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 18 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 18 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HH.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 19 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 19 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 20 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 20 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LH.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-9-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-9-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-9-2' style='white-space:nowrap; text-align:center;'> <!-- l. 21 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-9-3' style='white-space:nowrap; text-align:center;'> <!-- l. 21 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-10-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-10-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-10-2' style='white-space:nowrap; text-align:center;'> <!-- l. 22 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-10-3' style='white-space:nowrap; text-align:center;'> <!-- l. 22 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HH.svg' /> </div>                                                                    </p></td></tr></table>
 </div> <a id='x1-1001r1'></a>
 <a id='x1-1002'></a>
-<figcaption class='caption'><span class='id'>Figure 1: </span><span class='content'>A demonstration of the shift-variance of the DWT.
+<figcaption class='caption'><span class='id'>Figure 1: </span><span class='content'>A demonstration of the shift-variance of the DWT. As it can be seen,
+when the circle has been moved only one pixel, the value of the coefficients that
+correspond to the circunference of the circle are different between the reference
+frame and the predicted frame. Similar results have been obtained for other
+filters. See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/DWT_shift_invariance.ipynb'>Shift invariance in the DWT domain</a>.
 </span></figcaption><!-- tex4ht:label?: x1-1001r1  -->
                                                                   
 
                                                                   
    </figure>
-<!-- l. 33 --><p class='indent'>   This technique is also known by In-Band Motion estimation and Compensation
+<!-- l. 35 --><p class='indent'>   This technique is also known by In-Band Motion estimation and Compensation
 (IBMC) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span>. ME in the DWT is interesting because the multiresolution structure
 generated by the DWT can speed-up the computation of the motion information
-because, potentially, we can use hierarchical ME directly over the DWT
-domain. However, the DWT, that is critically sampled, is not shift invariant
-(see the Fig. <a href='#x1-1001r1'>1<!-- tex4ht:ref: fig:dwt_shift_variance  --></a>). This basically means that the same signal displaced (or
-delayed) one sample generate different DWT coefficients. Therefore, we cannot
-estimate the motion in the DWT domain simply comparing blocks of the
+because, potentially, we can use hierarchical ME directly over the DWT domain.
+However, the DWT, that is critically sampled, is not shift invariant (see the
+Fig. <a href='#x1-1001r1'>1<!-- tex4ht:ref: fig:dwt_shift_variance  --></a>). This basically means that the same signal displaced (or delayed) one
+sample generate different DWT coefficients. Therefore, we cannot estimate nor
+compensate the motion in the DWT domain simply comparing blocks of the
 signal.
-</p><!-- l. 44 --><p class='indent'>   Solutions:
+</p><!-- l. 47 --><p class='indent'>   Notice also that the effects of shift-variance is also visible after using the inverse
+transform when the coefficients are filtered or quantized, because the aliasing between
+the filters is not completely cancelled in this case <span class='cite'>[<a href='#Xbradley2003shift'>2</a>]</span>.
+</p><!-- l. 52 --><p class='indent'>   The reason why the 1-pixel movement is generating different coefficients in the
+reference and the predicted frames is because a 1-pixel motion cannot be represented
+using always the same phase (remember that with the downsampler we are basically
+selecting only one the two possible phases of the output of the analysis filters: the
+even samples or the odd samples). Lets suppose that the downsampler discards the
+odd coefficients (let’s refer them as odd-phase coefficients). In this case, the
+even-phase cofficients of the reference frame are the same than the odd-phase
+coefficients of the predicted frame (this can be seen in this notebook). Therefore, in
+the 1D case, when the motion is “even”-type (that is, a displacement of a even
+number of samples) we should compensate the even-phase coefficients of the
+reference and the predicted frame, while when the motion is “odd”-type we
+should compensate the odd-phase coefficients of the predicted frame with a
+prediction generated with the even-phase coefficients of the reference frame, or
+viceversa.
+</p><!-- l. 69 --><p class='indent'>   There are different alternatives for recovering the “lost” phase during the DWT
+(in the 1D case):
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-1004x1'>Recompute the decimated coefficients from the existing ones, generating
-     the Overcomplete DWT.
+<li class='enumerate' id='x1-1004x1'>MC-then-downsample: Perform first the MC stage directly over the output
+     of the analysis filters, and then, selectively downsample the result. Notice
+     that the downsampler should select the right phase, depending on the
+     type of motion detected (“odd” or “even”). This information (the selected
+     phase), should be available at the decoder, along with the motion fields.
      </li>
-<li class='enumerate' id='x1-1006x2'>Compute the inverse DWT and estimate in the image domain.</li></ol>
-   <figure class='figure' id='-a-demonstration-of-the-shiftvariance-of-the-dwt-similar-results-have-been-obtained-for-other-filters-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomaindwtshiftinvarianceipynbnotebook-'> 
+<li class='enumerate' id='x1-1006x2'>Delay-then-DWT: Perform two identical DWTs, one to the original signal,
+     and the other to a one-sample delayed signal (remember than a movement
+     of one pixel will change the phase at the output of the DWT). Thus, the
+     DWT applied to the original signal will generate one of the phases and
+                                                                  
+
+                                                                  
+     the DWT applied to the delayed signal will generate the other one.
+     </li>
+<li class='enumerate' id='x1-1008x3'>CODWT: Use the current (single phase) L and H coefficients to compute
+     the  missing  phase,  using  the  CODWT  (Complete-to-Overcomplete
+     DWT) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span> (a new type of DWT applied to the DWT coefficients).
+     </li>
+<li class='enumerate' id='x1-1010x4'>Use the Algorithme à Trous (AaT) <span class='cite'>[<a href='#Xmallat1999wavelet'>4</a>]</span>, which removes the downsamplers
+     from the DWT, generating the so called Overcomplete DWT (ODWT).
+     Notice that, because the downsamplers are removed, the aliasing artifacts
+     produced by the downsamplers is also avoided.
+     </li>
+<li class='enumerate' id='x1-1012x5'>Approximate the AaT coefficients by interpolating the DWT coefficients
+     using the DWT synthesis filters. In this case, the aliasing is not avoided,
+     but the shift-variance problem is reduced.</li></ol>
+<!-- l. 98 --><p class='noindent'>Each alternative has pros and cons. If the DWT has been implemented using
+convolution, MC-then-downsample should be a fast alternative. However, if the DWT
+uses Lifting, Multiple-DWT-then-MC should be fast also, because only one phase is
+computed by the DWT. These two options can be used with any DWT
+filters. On the other hand, CODWT needs specific designs form each DWT
+filters. Notice that, in any case, the solution is reached after using the ODWT
+domain.
+</p><!-- l. 106 --><p class='indent'>   In the 2D case, and always working with only one level of the DWT, we have up
+to four different phases: (even, even)-, (even, odd)-, (odd, even)-, and (odd,
+odd)-phase coefficients. Thus, depending on the type of motion detected, the
+corresponding phase should be selected.
+</p>
+   <h4 class='subsectionHead' id='recovering-the-lost-phases'><span class='titlemark'>1.1   </span> <a id='x1-20001.1'></a>Recovering the lost phases</h4>
+   <figure class='figure' id='-a-demonstration-of-the-shiftinvariance-of-the-odwt-see-the-notebook-httpsgithubcomvicentegonzalezruizmotioncompensationdwtdomainblobmainodwtshiftinvarianceipynbshift-invariance-in-the-overcomplete-dwt-domain-'> 
 
                                                                   
 
@@ -66,30 +128,101 @@ signal.
                                                                   
 
                                                                   
-<div class='tabular'> <table class='tabular' id='TBL-3'><colgroup id='TBL-3-1g'><col id='TBL-3-1' /><col id='TBL-3-2' /><col id='TBL-3-3' /></colgroup><tr id='TBL-3-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 54 --><p class='noindent'><div style='text-align:center;'> <img src='frame_0_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 54 --><p class='noindent'><div style='text-align:center;'> <img src='frame_1_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 54 --><p class='noindent'><div style='text-align:center;'> <img src='frame_2_Y.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-2-1' style='white-space:nowrap; text-align:center;'> </td><td class='td11' id='TBL-3-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 55 --><p class='noindent'><div style='text-align:center;'> <img src='movement_0.svg' /> </div>  </p> </td><td class='td11' id='TBL-3-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 55 --><p class='noindent'><div style='text-align:center;'> <img src='movement_1.svg' /> </div> </p></td>
-</tr><tr id='TBL-3-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 56 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 56 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 56 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 57 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 57 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 57 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LH.png' /> </div> </p></td>
-</tr><tr id='TBL-3-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-5-1' style='white-space:nowrap; text-align:center;'> <!-- l. 58 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 58 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 58 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HL.png' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-6-1' style='white-space:nowrap; text-align:center;'> <!-- l. 59 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 59 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 59 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HH.png' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 60 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 60 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LL.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 61 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 61 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LH.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-9-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-9-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-9-2' style='white-space:nowrap; text-align:center;'> <!-- l. 62 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-9-3' style='white-space:nowrap; text-align:center;'> <!-- l. 62 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HL.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-10-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-10-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-10-2' style='white-space:nowrap; text-align:center;'> <!-- l. 63 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-10-3' style='white-space:nowrap; text-align:center;'> <!-- l. 63 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HH.svg' /> </div>                                                                    </p></td></tr></table>
-</div> <a id='x1-1007r2'></a>
-<a id='x1-1008'></a>
-<figcaption class='caption'><span class='id'>Figure 2: </span><span class='content'>A demonstration of the shift-variance of the DWT. Similar results
-have been obtained for other filters. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/DWT_shift_invariance.ipynb'>notebook</a>.
-</span></figcaption><!-- tex4ht:label?: x1-1007r1  -->
+<div class='tabular'> <table class='tabular' id='TBL-3'><colgroup id='TBL-3-1g'><col id='TBL-3-1' /><col id='TBL-3-2' /><col id='TBL-3-3' /></colgroup><tr id='TBL-3-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-2-1' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LH.png' /> </div> </p></td>
+</tr><tr id='TBL-3-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HH.png' /> </div> </p></td>
+</tr><tr id='TBL-3-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-5-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 142 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 142 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-3-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-6-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 143 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 143 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LH.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-3-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 144 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 144 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-3-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 145 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 145 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HH.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-2001r2'></a>
+<a id='x1-2002'></a>
+<figcaption class='caption'><span class='id'>Figure 2:  </span><span class='content'>A  demonstration  of  the  shift-invariance  of  the  ODWT.  See  the
+notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/ODWT_shift_invariance.ipynb'>Shift invariance in the Overcomplete DWT domain</a>.
+</span></figcaption><!-- tex4ht:label?: x1-2001r1  -->
                                                                   
 
                                                                   
    </figure>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>2   </span> <a id='x1-20002'></a>References</h3>
+<!-- l. 152 --><p class='indent'>   There are different alternatives for regenerating the phases discarded by the
+subsamplers of the DWT. This is equivalent to compute the Overcomplete DWT
+(ODWT) <span class='cite'>[<a href='#Xmallat1999wavelet'>4</a>]</span>.
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-2004x1'>Use the Algorithme à Trous <span class='cite'>[<a href='#Xmallat1999wavelet'>4</a>]</span>, which basically consists in removing
+     the downsamplers, avoiding thus the aliasing artifacts generated by the
+     noncompliance with the sampling theorem. See the notebook .
+     </li>
+<li class='enumerate' id='x1-2006x2'>Considering the previous experiments, it’s easy to see that if we shift the
+     signal one sample and perform the DWT, we get the “lost” phase. This
+     method has been used to perform efficient MC in the DWT domain <span class='cite'>[<a href='#Xpark2000motion'>5</a>, <a href='#Xli2001all'>3</a>]</span>.
+     See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/ODWT_with_delay.ipynb'>Computing the ODWT using a delay</a>.
+     </li>
+<li class='enumerate' id='x1-2008x3'>Apply               some               transform               (such               as
+     for example, the CODWT (Complete-to-Overcomplete DWT) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span> to the
+     DWT to reconstruct the ODWT.</li></ol>
+<!-- l. 171 --><p class='noindent'>The Fig. <a href='#x1-2001r2'>2<!-- tex4ht:ref: fig:odwt  --></a> shows the shift invariance of the ODWT.
+</p>
+   <h4 class='subsectionHead' id='about-using-the-lost-phases-in-ibmc'><span class='titlemark'>1.2   </span> <a id='x1-30001.2'></a>About using the lost phases in IBMC</h4>
+<!-- l. 174 --><p class='noindent'>Up to date, all the video codecs that use critically sampled IBMC also use
+block-based motion compensation <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. This technique divides the frames into
+non-overlaping blocks and computes a motion vector for every block, that provides a
+projection (a prediction) \(\hat {P}\) of the reference frame \(R\) that must be as close as
+possible to the predicted frame \(P\). These blocks usually have a size of 16x16
+pixels.
+</p><!-- l. 182 --><p class='indent'>   The use of blocks imples that:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-3002x1'>If \(N\) is the number of pixels in a frame, \(N/256\) (for 16x16 blocks) is the number of
+     motion vectors. Therefore, if the motion vectors field has to be sent to the
+     decoder, the data overhead is small (although this depends on the length
+     of the representation of the texture).
+                                                                  
+
+                                                                  
+     </li>
+<li class='enumerate' id='x1-3004x2'>All the coefficients that correspond to the same block has the same phase.
+     Thus, if the phase also has to be sent to the decoder, again, the data
+     overhead can be considered small.</li></ol>
+<!-- l. 194 --><p class='indent'>   Unfortunately, there is a problem with mixing the phases. To reconstruct the
+border pixels of the blocks, the adjacent (with the same phase) coefficients must be
+also used by the decoder (see the notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/mixing_phases.ipynb'>Mixing phases in the DWT domain</a>). For
+this reason, the size of the blocks affects to the compression ratio (the smaller the
+blocks, the higher the number of adjacent coefficients, and therefore, the lower the
+compression ratio). We can think that this effect can be mitigated using larger block
+sizes, but this will also affect to the compression ratio because the quality of
+the predictions worsen with the increment of the size of the blocks. This
+carries an optimization problem that it’s hard to solve, especially in real-time
+applications.
+</p><!-- l. 210 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>2   </span> <a id='x1-40002'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xandreopoulos2005complete'></a>Y. Andreopoulos,  A. Munteanu,  Van  der  A.G.,  J.P.H.  Cornelis,  and
    P. Schelkens.    <a href='https://d1wqtxts1xzle7.cloudfront.net/40910653/Complete-to-Overcomplete_DWT_-_IEEE_TSP_2005.pdf'>Complete-to-Overcomplete  Discrete  Wavelet  Transforms:
    Theory  and  Applications</a>.     <span class='ecti-1000'>IEEE  Transactions  on  Signal  Processing</span>,
    53(4):1398–1412, 2005.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [2]<span class='bibsp'>   </span></span><a id='Xbradley2003shift'></a>A.P.  Bradley.    <a href='https://eprints.qut.edu.au/114753/1/Bradley_DICTA03.pdf'>Shift-invariance  in  the  Discrete  Wavelet  Transform</a>.
+   <span class='ecti-1000'>Proceedings of VIIth Digital Image Computing: Techniques and Applications.
+   </span><span class='ecti-1000'>Sydney</span>, 2003.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [3]<span class='bibsp'>   </span></span><a id='Xli2001all'></a>X. Li,  L. Kerofsky,  and  S. Lei.     <a href='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.79.7108&amp;rep=rep1&amp;type=pdf'>All-phase  motion  compensated
+   prediction in the wavelet domain for high performance video coding</a>.   In
+   <span class='ecti-1000'>Proceedings 2001 International Conference on Image Processing (Cat. No.
+   </span><span class='ecti-1000'>01CH37205)</span>, volume 3, pages 538–541. IEEE, 2001.
+   </p>
+                                                                  
+
+                                                                  
+   <p class='bibitem'><span class='biblabel'>
+ [4]<span class='bibsp'>   </span></span><a id='Xmallat1999wavelet'></a>S. Mallat and G. Peyré.  <a href='http://links.uwaterloo.ca/amath391w13docs/Mallat3.pdf'><span class='ecti-1000'>A Wavelet Tour of Signal Processing: The
+   </span><span class='ecti-1000'>Sparse Way</span></a>. Elsevier, 2009.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [5]<span class='bibsp'>   </span></span><a id='Xpark2000motion'></a>H.-W. Park and H.-S. Kim.  <a href='https://pdfs.semanticscholar.org/48c6/4583590528e1af327f6a31e56123d4abc4e6.pdf?_ga=2.85498713.1311541910.1610981476-741442228.1604850032'>Motion Estimation Using Low-Band-Shift
+   Method for Wavelet-Based Moving-Picture Coding</a>.  <span class='ecti-1000'>IEEE Transactions on
+   </span><span class='ecti-1000'>Image processing</span>, 9(4):577–587, 2000.
 </p>
    </div>
     
