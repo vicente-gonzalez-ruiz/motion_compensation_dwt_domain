@@ -1,8 +1,32 @@
 % Emacs, this is -*-latex-*-
 
-\title{\href{https://vicente-gonzalez-ruiz.github.io/motion_estimation/docs/}{Motion Compensation in the Discrete Wavelet Transform Domain}}
+\title{\href{https://vicente-gonzalez-ruiz.github.io/motion_estimation/docs/}{Motion Compensation in the DWT (Discrete Wavelet Transform) Domain}}
 
 \maketitle
+
+% Posiblemente redundante con la siguiente sección
+\section{MC in the DWT Domain}
+%{{{
+
+This technique is also known by In-Band Motion estimation and
+Compensation (IBMC)~\cite{andreopoulos2005complete}, and it is
+motivated because MC can be used directly over DWT-images (for
+example, images that have been compressed with JPEG2000), without
+requiring the inverse and the forward DWT of each image. However, the
+critically sampled DWT domain is not shift invariant (see the
+Fig.~\ref{fig:dwt_shift_variance}) and the coefficients of the
+reference image cannot be substracted directly to the coefficients of
+the predicted image.
+
+Solutions\footnote{To avoid the lack of shift-invariance of the DWT.}:
+\begin{enumerate}
+\item Recompute the decimated coefficients from the existing ones,
+  substracting in a Overcomplete DWT (ODWT) domain.
+\item Compute the inverse DWT, compensate in the image domain, and
+  compute the forward DWT of the residuals.
+\end{enumerate}
+
+%}}}
 
 \section{Motion estimation in the critically sampled DWT domain}
 %{{{
@@ -207,6 +231,217 @@ it's hard to solve, especially in real-time applications.
 
 %}}}
 
+\subsection{MC in the Laplacian Pyramid}
+The Laplacian Pyramid, that was proposed by Burt and
+Adelson~\cite{burt1987laplacian} and has been used for the design of
+spatially-scalable image and video codecs, such as
+SHVC~\cite{sullivan2012overview}.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\png{f0_LP_level1}{300}} & \vbox{\png{f1_LP_level1}{300}} & \vbox{\png{f2_LP_level1}{300}} \\
+    \vbox{\png{f0_LP_level0}{300}} & \vbox{\png{f1_LP_level0}{300}} & \vbox{\png{f2_LP_level0}{300}} \\
+    & \vbox{\svg{f0_1_LP_level1}{300}} & \vbox{\svg{f0_2_LP_level1}{300}} \\
+    & \vbox{\svg{f0_1_LP_level0}{300}} & \vbox{\svg{f0_2_LP_level0}{300}}
+  \end{tabular}
+  \caption{A demonstration of the shift-invariance of the LP. See this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/LP_shift_invariance.ipynb}{notebook}.}
+\label{fig:LP}
+\end{figure}
+
+The LP is a frame expansion that generates an expanded (not critical)
+octave-band decomposition, and in some way, it can be considered one
+of the precursors of the dyadic DWT. Unlike in the DWT, such expansion
+is consequence of that the filters used for creating the LP are not
+orthogonal and therefore, they do not cancel the aliasing between them
+(see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/LP_is_not_critical.ipynb}{notebook}) when their downsampled outputs are added.
+
+As a consequence of that the downsampling can not be used without
+violating the perfect reconstruction, the redundancy in the LP tends
+to 2 with the number of levels of the pyramid, which affects
+negatively to the compression ratio. On the contrary, an advantage of
+this is that the LP is shift-invariant in the high-frequency subband
+(see the Fig.~\ref{fig:LP}), and of course, like the DWT, in the
+low-frequency subband when the motion is a multiple of 2 (see the
+Fig.~\ref{fig:LP})..
+
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\png{f0_haar_iH}{300}} & \vbox{\png{f1_haar_iH}{300}} & \vbox{\png{f2_haar_iH}{300}} \\
+    & \vbox{\svg{f0_1_haar_iH}{300}} & \vbox{\svg{f0_2_haar_iH}{300}}
+  \end{tabular}
+  \caption{A demonstration of the near shift-invariance in the [H]
+    subband of the PDWT. See this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/PDWT_shift_invariance.ipynb}{notebook}.}
+\label{fig:PDWT}
+\end{figure}
+
+\subsection{Pyramid DWT (PDWT)}
+Inspired in the LP, we can estimate and componsensate the motion in an alternative
+representation of the DWT decomposition, that we
+have called Pyramid DWT. In fact, a PDWT decomposition is a special
+case of a LP where the filters are (bi)orthogonal DWT filters (in this
+case, we say that the LP is a tight frame and therefore, it can be
+downsampled without lossing the perfect reconstruction).
+
+The 1-levels PDWT (that has two levels in its pyramid) of the frame
+$X$ is defined by
+\begin{equation}
+  \{L, [H]\} = \{LL, \text{DWT}^{-1}(0, LH, HL, HH)\} = \{LL, \text{DWT}^{-1}(0, H)\},
+  \label{eq:PDWT}
+\end{equation}
+where
+\begin{equation}
+  \{LL, LH, HL, HH\} = \text{DWT}(X).
+  \label{eq:DWT}
+\end{equation}
+
+The $S$ levels CS-LPT$^S$ is computed simply by appliying the
+Eq.~\ref{eq:PDWT} to the subband $L$, recursively.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{cc}
+  \vbox{\svg{f0_1_haar_iH_error}{300}} &
+  \vbox{\svg{f0_1_haar_LHHLHH_error}{300}}
+  \end{tabular}
+  \caption{Prediction error between frames 0 and 1, in the PDWT domain
+    (left) and the DWT domain (right). See this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/PDWT_shift_invariance.ipynb}{notebook}. The
+    prediction error between frames 0 and 2 is zero. Remember that we transmit $H$, not $[H]$.}
+\label{fig:PDWT_error}
+\end{figure}
+
+The PDWT is only near shift-invariant as it can be seen in the
+Fig.~\ref{fig:PDWT}. However, it has several advantages:
+\begin{enumerate}
+\item The CS-LPT is as compact as the DWT.
+\item The phases are not considered, which simplifies the
+  ME/MC process and enables the use of any DWT filter.
+\item The error generated by the lack of shift-invariance for the
+  odd-type motion is smaller than for the DWT (see
+  Fig.~\ref{fig:DWT}). As it can be seen in the
+  Fig~\ref{fig:PDWT_error}, the energy of the error is the same in
+  $[H]$ and $H$, but the energy is concentrated in only
+  one critical subband (HL).
+\end{enumerate}
+
+\subsection{MC in the PDWT domain}
+It's reasonable to expect that the motion of an object between the
+frames $R$ and $P$ must move their low and the high frecuencies in the
+same amount of pixels. With this idea in mind, we estimate the motion
+in the $[H]$ subband using only the information provided by the
+low-frequency subband $L$. More concretely, we implement:
+
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\png{f0_haar_iL}{300}} & \vbox{\png{f1_haar_iL}{300}} & \vbox{\png{f2_haar_iL}{300}} \\
+    & \vbox{\svg{f0_1_haar_iL}{300}} & \vbox{\svg{f0_2_haar_iL}{300}}
+  \end{tabular}
+  \caption{A demonstration of the near shift-invariance in the [L]
+    (PDWT) subband. See this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/iLL_shift_invariance.ipynb}{notebook}.}
+\label{fig:iL}
+\end{figure}
+
+\begin{enumerate}
+
+\item In order to increase the accuracy of the ME (see the
+  Fig.~\ref{fig:iL}, we interpolate the low-frequency subbands of $R$
+  and $P$:
+  \begin{equation}
+    [P.L] = \text{DWT}^{-1}(P.L, 0),
+  \end{equation}
+  \begin{equation}
+    [R.L] = \text{DWT}^{-1}(R.L, 0).
+  \end{equation}
+
+\item Estimate the motion between $[P.L]$ and $[R.L]$.
+  The output of this step is a motion vectors field
+  $\overset{[P.L]\rightarrow [R.L]}{V}$, that describes how to project
+  the $[P.L]$ onto $[R.L]$. Notice that $\overset{[P.L]\rightarrow
+  [R.L]}{V}$ should also be a good candidate for mapping $P$ onto
+  $R$.\footnote{Notice also that the number of vectors in
+  $\overset{[P.L]\rightarrow [L.L]}{V}$ can be as high as the number
+  of pixels in $R$ (and $P$), although this will depend on the
+  accuracy of the ME/MC.}
+  
+\item Use $\overset{[P.L]\rightarrow [R.L]}{V}$ and $[R.L]$ to
+  generate a prediction $[\hat{P}.L]$, and $[R.H]$ to generate a
+  prediction $[\hat{P}.H]$. We define the prediction error in the
+  low-frequency subband as
+  \begin{equation}
+    [E.L] = [P.L] - [\hat{P}.L],
+    \label{eq:prediction_error_L}
+  \end{equation}
+  and the prediction error in the high-frequency subband
+  as
+  \begin{equation}
+    [E.H] = [P.H] - [\hat{P}.H].
+    \label{eq:prediction_error}
+  \end{equation}
+  Notice that $\overset{[P.L]\rightarrow [R.L]}{V}$ depends only on
+  $R.L$ and $P.L$, not on the high frequency subbands.
+
+\item Compute the Element-Wise (EW) minimum of $[P.L]$ and $[E.L]$:
+  \begin{equation}
+    \{[T],[M]\} = \text{EW-min}([P.L], [E.L])
+    \label{eq:EW-min}
+  \end{equation}
+  where
+  \begin{equation}
+    [T]_{i,j}=\text{min}([P.L]_{i,j}, [E.L]_{i,j})
+  \end{equation}
+  and $[M]$ is a binary matrix defined by
+  \begin{equation}
+    [M]_{i,j} = \left\{
+      \begin{array}{ll}
+        0 & \text{if}~[P.L]_{i,j} < [E.L]_{i,j} ~(\text{I-type~coefficient})\\
+        1 & \text{otherwise}~(\text{P-type~coefficient}).
+      \end{array}
+    \right.
+    \label{eq:matrix}
+  \end{equation}
+  
+\item Output
+  \begin{equation}
+    [O]_{i,j} = \left\{
+      \begin{array}{ll}
+        [P.H]_{i,j} & \text{if}~[M]_{i,j} = 0~(\text{I-type~coefficient})\\
+        {[}E.H{]}_{i,j} & \text{otherwise}~(\text{P-type~coefficient}).
+      \end{array}
+    \right.
+    \label{eq:output}
+  \end{equation}
+  Realize that it must hold that
+  \begin{equation}
+    \sigma^2_O \le \sigma^2_E,
+    \label{eq:vars}
+  \end{equation}
+  where $\sigma^2$ denotes the variance, $O=\text{DWT}([O])$, and
+  $E=\text{DWT}([O])$. Eq.~\ref{eq:vars} implies that
+  \begin{equation}
+    \text{CR}_O \ge \text{CR}_E
+    \label{eq:crs}
+  \end{equation}
+  should hold, where CR stands for Compression Ratio.
+
+  $O$ is the high-frequency subband that we will send from the
+  encoder to the decoder, and it can be seen, it is composed of
+  prediction error coefficients and original coefficients. Making a
+  comparison with the procedure followed in most video coding
+  standards, the prediction error coefficients represent predicted
+  blocks (P-type blocks) or skipped blocks (S-type
+  blocks)\footnote{S-type blocks are an special case of P-type blocks
+  that have a prediction error so small that is more beneficial not to
+  send their texture.}, and the original coefficients are equivalent
+  to the intra(coded) blocks (I-type blocks).
+\end{enumerate}
+
 \section{References}
 %{{{
 
@@ -238,3 +473,252 @@ it's hard to solve, especially in real-time applications.
   \caption{A demonstration of the shift-variance of the DWT.}
 \end{figure}
 \end{comment}  
+
+\begin{comment}
+
+  \begin{figure}
+  \centering
+  \myfig{graphics/problem}{3cm}{300}
+  \caption{Basic encoding problem.}
+  \label{fig:problem}
+\end{figure}
+
+Using the encoding system described in the Figure~\ref{fig:problem}, and defined by
+\begin{equation}
+  \left\{\
+    \begin{array}{l}
+      \tilde{\mathbf R} = \text{Q}_{\mathbf R}({\mathbf R}) \\
+      \tilde{\mathbf E} = \text{Q}_{\mathbf E}\big({\mathbf P}-\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}(\tilde{\mathbf R})\big)
+    \end{array}
+  \right.
+  \label{eq:forward}
+\end{equation}
+and
+\begin{equation}
+  \begin{array}{l}
+    \tilde{\mathbf P} = \tilde{\mathbf E} + \overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}(\tilde{\mathbf R}),
+  \end{array}
+  \label{eq:backward}
+\end{equation}
+
+find $\text{Q}_{\mathbf{R}}$ and $\text{Q}_{\mathbf{E}}$ that minimize in the RD domain (the RD curve of)
+\begin{equation}
+  \text{MSE}(\{\mathbf{R},\mathbf{P}\},\{\hat{\mathbf{R}},\hat{\mathbf{P}}\}) = \frac{\text{MSE}({\mathbf R},\hat{\mathbf R}) + \text{MSE}({\mathbf P},\hat{\mathbf P})}{2},
+\end{equation}
+set that
+\begin{equation}
+  \text{MSE}({\mathbf R},\tilde{\mathbf R}) = \text{MSE}({\mathbf P},\tilde{\mathbf P}).
+  \label{eq:constant_quality}
+\end{equation}
+Equation~\ref{eq:constant_quality} indicates that all the decoded
+frames should have the same distortion (from a human perception point
+of view). Notice that the transform defined by the Equations
+~\ref{eq:forward} and \ref{eq:backward} is not orthogonal and
+therefore, the ``subbands'' $\tilde{\mathbf R}$ and
+$\tilde{\mathbf P}$ are not independent. It can be seen that
+$\text{Q}_{\mathbf R}$ affects to the selection of
+$\text{Q}_{\mathbf E}$, because $\tilde{\mathbf R}$ is used as
+reference for finding ${\mathbf E}$.
+
+\end{comment}
+
+\begin{comment}
+
+\subsection{Using (also) the lost phase in IBMC}
+There are different alternatives for recovering the ``lost'' phases
+(remember that we have two subbands, and two downsamplers) during the
+DWT (in the 1D case). The result of this procedure is know as the
+Overcomplete DWT (ODWT). Notice, however, that we are not interested
+in encoding the ODWT domain, but in encoding the DWT that is more
+compact. To achieve this, at least the following techniques can be
+used:
+
+\subsection{Performing IBMC in the 1-levels MDWT domain}
+Once that the missing phases have been recovered, the MC procedure
+between two frames (the reference frame $R$ and the predicted frame
+$P$) that we are going to implement is:
+\begin{enumerate}
+\item  Therefore, estimate the motion between the overcomplete
+  low-frequency subband of the reference frame $[R.L]$ and the
+  overcomplete low-frequency subband of the predicted frame
+  $[P.L]$. The output of this step is a motion vectors field
+  $\overrightarrow{V}$, that describes how to project the $[R.L]$ onto
+  $[P.L]$. Notice that $\overrightarrow{V}$ should be also a good
+  candidate for mapping $R$ onto $P$.
+  
+\item Use $\overrightarrow{V}$ and $[R.H]$ (notice that in 2D case,
+  $[R.H]=\{[R.HL], [R.LH], [R.HH]\}$) to generate a prediction
+  $[\hat{P}.L]$. We define the prediction error
+  in the overcomplete low-frequency subband as
+  \begin{equation}
+    [E.L] = [P.L] - [\hat{P}.L],
+    \label{eq:prediction_error_L}
+  \end{equation}
+  and the prediction error in the overcomplete high-frequency subband
+  as
+  \begin{equation}
+    [E.H] = [P.H] - [\hat{P}.H].
+    \label{eq:prediction_error}
+  \end{equation}
+
+\item Selectively subsample $[E.H]$, picking out the right phase.
+\end{enumerate}  
+
+
+  Perform first the MC stage directly over the
+  output of the analysis filters, and then, selectively downsample the
+  result. Notice that the downsampler should select the right phase,
+  depending on the type of motion detected (``odd'' or ``even''). This
+  information (the selected phase), should be available at the
+  decoder, along with the motion fields.
+\item Delay-then-DWT: Perform two identical DWTs, one to the original
+  signal, and the other to a one-sample delayed signal (remember than
+  a movement of one pixel will change the phase at the output of the
+  DWT). Thus, the the DWT applied to the original signal will generate
+  one of the phases and the DWT applied to the delayed signal will
+  generate the other one.
+\item CODWT: Use the current (single phase) L and H coefficients to
+  compute the missing phase, using the CODWT (Complete-to-Overcomplete
+  DWT)~\cite{andreopoulos2005complete} (a new type of DWT applied to
+  the DWT coefficients).
+\end{enumerate}
+Each alternative has pros and cons. If the DWT has been implemented
+using convolution, MC-then-downsample should be a fast
+alternative. However, if the DWT uses Lifting, Multiple-DWT-then-MC
+should be fast also, because only one phase is computed by the
+DWT. These two options can be used with any DWT filters. On the other
+hand, CODWT needs specific designs form each DWT filters. Notice that, in any case, the solution is reached after using the ODWT domain.
+
+---
+
+is because a 1-pixel motion cannot
+be represented selecting always the same phase at the downsamplers
+(remember that with the downsampler we are basically selecting only
+one the two possible phases of the output of the analysis filters: the
+even samples or the odd samples, see this notebook).
+
+Lets suppose that
+the downsampler discards the odd coefficients (let's refer them as
+odd-phase coefficients).
+
+In this case, the even-phase cofficients of
+the reference frame are the same than the odd-phase coefficients of
+the predicted frame (this can be seen in this notebook). Therefore, in
+the 1D case, when the motion is ``even''-type (that is, a displacement
+of a even number of samples) we should compensate the even-phase
+coefficients of the reference and the predicted frame, while when the
+motion is ``odd''-type we should compensate the odd-phase coefficients
+of the predicted frame with a prediction generated with the even-phase
+coefficients of the reference frame, or viceversa.
+
+
+\subsection{Near shift-invariance in the IDWT (Interpolated DWT) domain}
+As it was commented before, the causant of the shift-variance in the
+critically sampled DWT domain is the use of the downsamplers. At this
+point we have basically two different alternatives:
+\begin{enumerate}
+\item Use the Algorithme \`a Trous (AaT)~\cite{mallat1999wavelet},
+  which removes the downsamplers from the DWT, generating the so
+  called Overcomplete DWT (ODWT). Notice that, because the
+  downsamplers are removed, the aliasing artifacts produced by the
+  downsamplers is also avoided.
+\item Approximate the AaT coefficients by interpolating the DWT
+  coefficients using the DWT synthesis filters. In this case, the
+  aliasing is not avoided, but the shift-variance problem is
+  reduced.
+\end{enumerate}
+
+\end{comment}
+
+
+\begin{comment}
+\subsection{Motion compensation in action}
+\begin{figure}
+  \svg{R}{1000}
+  \svg{P}{1000}
+  \svg{y_motion}{1000}
+  \svg{x_motion}{1000}
+  \svg{hat_P}{1000}
+  \svg{without_ME}{1000}
+  \svg{with_ME}{1000}
+  \caption{Effect of ME (using OF) over the temporal redundancy
+    removal.}
+  \label{fig:MC}
+\end{figure}
+The Fig.~\ref{fig:MC} shows an example the performace of the use of
+OF, comparing the prediction error generated with and without ME. In
+this experiment, a motion vector has been computed between each point
+of ${\mathbf P}$ and ${\mathbf R}$. As it can be seen, the OF can
+reduce the temporal redundancy significantly.
+\end{comment}
+
+\begin{comment}
+The OF~\cite{horn1981determining} tries to establish connections between the pixels of
+the frames $P$ and $R$ supposing that:
+\begin{enumerate}
+\item $P$ and $R$ are adjacent in time (if $R$ was taken at time $t$,
+  $P$ is taken at time $dt+t$) and therefore, similar in
+  content.
+\item Similarity between images implies that the pixels in both
+  frames, $R$ and $P$, will have the same luminance. If $I(x,y,t)$
+  measures the luminance of the pixel $(x,y)$ of the frame $R$,
+  similarity can be modeled by
+  \begin{equation}
+    I(x+dx, y+dy, t+dt) = I(x,y,t),
+    \label{eq:similarity}
+  \end{equation}
+  where $I(x+dx, y+dy, t+dt)$ is the corresponding pixel in the frame
+  $P$. The first part of the Eq.~\ref{eq:similarity} can be also
+  computed by (using the first-order Taylor expansion) as
+  \begin{equation}
+    I(x+dx, y+dy, t+dt) = I(x,y,t) + \frac{\partial I}{\partial x}dx + \frac{\partial I}{\partial y}dy + \frac{\partial I}{\partial t}dt,
+    \label{eq:taylor_exp}
+  \end{equation}
+  andtherefore, it must be true that
+  \begin{equation}
+    \frac{\partial I}{\partial x}dx + \frac{\partial I}{\partial y}dy + \frac{\partial I}{\partial t}dt = 0.
+    \label{eq:constraint}
+  \end{equation}
+  Dividing by $dt$, we finally get that
+  \begin{equation}
+    \frac{\partial I}{\partial x}\frac{dx}{dt} + \frac{\partial I}{\partial y}\frac{dy}{dt} + \frac{\partial I}{\partial t} = 0.
+  \end{equation}
+\item Adjacent pixels follow parallel
+  trajectories~\cite{horn1981determining}, with basically means that
+  neighbor pixels will have similar motion.
+\end{enumerate}
+\end{comment}
+
+\begin{comment}
+\begin{equation}
+  \begin{bmatrix}
+    \tilde{\mathbf R} \\
+    \tilde{\mathbf E}
+  \end{bmatrix} =
+  \begin{bmatrix}
+    \text{Q}_{\mathbf R}(\cdot) & 0 \\
+    -\overset{{\mathbf R}\rightarrow {\mathbf P}}{\text{ME}}(\text{Q}_{\mathbf E}(\cdot)) & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    {\mathbf R } \\
+    {\mathbf P}
+  \end{bmatrix}
+  \label{eq:forward}
+\end{equation}
+and
+\begin{equation}
+  \begin{bmatrix}
+    \tilde{\mathbf R} \\
+    \tilde{\mathbf P}
+  \end{bmatrix} =
+  \begin{bmatrix}
+    \text{Q}^{-1}_{\mathbf R}(\cdot) & 0 \\
+    \overset{{\mathbf R}\rightarrow {\mathbf P}}{\text{ME}}(\text{Q}^{-1}_{\mathbf E}(\cdot)) & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    \tilde{\mathbf R} \\
+    \tilde{\mathbf E},
+  \end{bmatrix}
+  \label{eq:backward}
+\end{equation}
+\end{comment}
