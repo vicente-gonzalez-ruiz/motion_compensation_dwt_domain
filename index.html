@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='en-US' xml:lang='en-US'> 
-<head> <title>Motion Compensation in the Discrete Wavelet Transform Domain</title> 
+<head> <title>Motion Compensation in the DWT (Discrete Wavelet Transform) Domain</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -17,53 +17,51 @@
 
                                                                   
 
-<h2 class='titleHead'><a href='https://vicente-gonzalez-ruiz.github.io/motion_estimation/docs/'>Motion Compensation in the Discrete Wavelet
-Transform Domain</a></h2>
+<h2 class='titleHead'><a href='https://vicente-gonzalez-ruiz.github.io/motion_estimation/docs/'>Motion Compensation in the DWT (Discrete
+Wavelet Transform) Domain</a></h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>January 6, 2023</span></div>
+<div class='date'><span class='ecrm-1200'>January 17, 2023</span></div>
    </div>
-   <h3 class='sectionHead' id='motion-estimation-in-the-critically-sampled-dwt-domain'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Motion estimation in the critically sampled DWT domain</h3>
-   <figure class='figure' id='-a-demonstration-of-the-shiftvariance-of-the-dwt-as-it-can-be-seen-when-the-circle-has-been-moved-only-one-pixel-the-value-of-the-coefficients-that-correspond-to-the-circunference-of-the-circle-are-different-between-the-reference-frame-and-the-predicted-frame-similar-results-have-been-obtained-for-other-filters-see-the-notebook-httpsgithubcomvicentegonzalezruizmotioncompensationdwtdomainblobmaindwtshiftinvarianceipynbshift-invariance-in-the-dwt-domain-'> 
-
+   <h3 class='sectionHead' id='motion-compensation-in-the-dwt-domain'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Motion Compensation in the DWT Domain</h3>
+<!-- l. 11 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='integer-pixel-accuracy-inband-motion-estimation-and-compensation-ibmc'><span class='titlemark'>1.1   </span> <a id='x1-20001.1'></a>Integer pixel accuracy In-Band Motion estimation and Compensation
+(IBMC)</h4>
+<!-- l. 12 --><p class='noindent'>At this stage of the encoding process, the video data is represented in the DWT
+domain, and therefore, we need to perform an In-Band Motion estimation and
+Compensation (IBMC) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span>). Let’s suppose that the number of levels of the DWT is 1,
+and therefore, each frame has been decomposed into two 2D subbands \(L\) and \(H\)
+(remember that using the notation introduced in the previous milestone, \(H\) has inside
+the three high-frequency subbands: \(LH\), \(HL\) and \(HH\), and that \(L=LL\)). This discussion will be also
+constrained to the case in which the movement of the objects in the scene is a integer
+number of pixels.
+</p><!-- l. 24 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='the-lack-of-shiftinvariance-in-the-dwt-domain'><span class='titlemark'>1.2   </span> <a id='x1-30001.2'></a>The lack of shift-invariance in the DWT domain</h4>
+<!-- l. 25 --><p class='noindent'>In our case, the video data is represented in the DWT domain, and therefore, we
+need to perform the so called In-Band Motion Estimation and Compensation <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span>).
+Let’s suppose that the number of levels of the DWT is 1, and therefore, each frame
+has been decomposed into two 2D subbands \(L\) and \(H\) (remember that using the notation
                                                                   
 
                                                                   
-                                                                  
-
-                                                                  
-<div class='tabular'> <table class='tabular' id='TBL-2'><colgroup id='TBL-2-1g'><col id='TBL-2-1' /><col id='TBL-2-2' /><col id='TBL-2-3' /></colgroup><tr id='TBL-2-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 13 --><p class='noindent'><div style='text-align:center;'> <img src='frame_0_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 13 --><p class='noindent'><div style='text-align:center;'> <img src='frame_1_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 13 --><p class='noindent'><div style='text-align:center;'> <img src='frame_2_Y.png' /> </div>                                                                    </p></td></tr><tr id='TBL-2-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-2-1' style='white-space:nowrap; text-align:center;'> </td><td class='td11' id='TBL-2-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 14 --><p class='noindent'><div style='text-align:center;'> <img src='movement_0.svg' /> </div>  </p> </td><td class='td11' id='TBL-2-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 14 --><p class='noindent'><div style='text-align:center;'> <img src='movement_1.svg' /> </div> </p></td>
-</tr><tr id='TBL-2-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 15 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 15 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 15 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-2-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 16 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-2-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 16 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-2-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 16 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LH.png' /> </div> </p></td>
-</tr><tr id='TBL-2-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-5-1' style='white-space:nowrap; text-align:center;'> <!-- l. 17 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 17 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 17 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HL.png' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-2-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-6-1' style='white-space:nowrap; text-align:center;'> <!-- l. 18 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 18 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 18 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HH.png' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-2-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 19 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 19 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LL.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-2-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 20 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 20 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LH.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-2-9-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-9-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-9-2' style='white-space:nowrap; text-align:center;'> <!-- l. 21 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-9-3' style='white-space:nowrap; text-align:center;'> <!-- l. 21 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HL.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-2-10-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-10-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-10-2' style='white-space:nowrap; text-align:center;'> <!-- l. 22 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-10-3' style='white-space:nowrap; text-align:center;'> <!-- l. 22 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HH.svg' /> </div>                                                                    </p></td></tr></table>
-</div> <a id='x1-1001r1'></a>
-<a id='x1-1002'></a>
-<figcaption class='caption'><span class='id'>Figure 1: </span><span class='content'>A demonstration of the shift-variance of the DWT. As it can be seen,
-when the circle has been moved only one pixel, the value of the coefficients that
-correspond to the circunference of the circle are different between the reference
-frame and the predicted frame. Similar results have been obtained for other
-filters. See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/DWT_shift_invariance.ipynb'>Shift invariance in the DWT domain</a>.
-</span></figcaption><!-- tex4ht:label?: x1-1001r1  -->
-                                                                  
-
-                                                                  
-   </figure>
-<!-- l. 35 --><p class='indent'>   This technique is also known by In-Band Motion estimation and Compensation
-(IBMC) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span>. ME in the DWT is interesting because the multiresolution structure
-generated by the DWT can speed-up the computation of the motion information
-because, potentially, we can use hierarchical ME directly over the DWT domain.
-However, the DWT, that is critically sampled, is not shift invariant (see the
-Fig. <a href='#x1-1001r1'>1<!-- tex4ht:ref: fig:dwt_shift_variance  --></a>). This basically means that the same signal displaced (or delayed) one
-sample generate different DWT coefficients. Therefore, we cannot estimate nor
-compensate the motion in the DWT domain simply comparing blocks of the
-signal.
-</p><!-- l. 47 --><p class='indent'>   Notice also that the effects of shift-variance is also visible after using the inverse
-transform when the coefficients are filtered or quantized, because the aliasing between
-the filters is not completely cancelled in this case <span class='cite'>[<a href='#Xbradley2003shift'>2</a>]</span>.
-</p><!-- l. 52 --><p class='indent'>   The reason why the 1-pixel movement is generating different coefficients in the
+introduces in the previous milestone, \(H\) has inside the three high-frequency subbands: \(LH\), \(HL\)
+and \(HH\), and that \(L=LL\)). So, after using the MDWT, MC must be performed using the DWT
+coefficients.
+</p><!-- l. 35 --><p class='indent'>   Unfortunately, as a consequence of the downsamplers used during the DWT
+to achieve critical sampling and the aliasing between the subbands, DWT
+decompositions are shift-variant. This can be seen in the Fig. <a href='#x1-12001r7'>7<!-- tex4ht:ref: fig:dwt_shift_variance  --></a> were some DWT
+coefficients of a test video with three frames (with a 1-pixel constant speed moving
+(to the left) cicle“empty”) has been shown. As it can be seen, when the circle has
+been moved only one pixel, the value of the coefficients that correspond to the
+circunference of the circle are different between the reference frame and the predicted
+frame. This makes quite difficult to estimate the motion, and therefore,
+compensate it. However, when the circle has traveled two pixels, a perfect match is
+performed.
+</p><!-- l. 48 --><p class='indent'>   Notice also that shift-variance is also generated after the inverse transform when
+the coefficients are filtered or quantized, because the aliasing between the filters is
+not completely cancelled in this case <span class='cite'>[<a href='#Xbradley2003shift'>2</a>]</span>.
+</p><!-- l. 54 --><p class='indent'>   The reason why the 1-pixel movement is generating different coefficients in the
 reference and the predicted frames is because a 1-pixel motion cannot be represented
 using always the same phase (remember that with the downsampler we are basically
 selecting only one the two possible phases of the output of the analysis filters: the
@@ -77,16 +75,442 @@ reference and the predicted frame, while when the motion is “odd”-type we
 should compensate the odd-phase coefficients of the predicted frame with a
 prediction generated with the even-phase coefficients of the reference frame, or
 viceversa.
-</p><!-- l. 69 --><p class='indent'>   There are different alternatives for recovering the “lost” phase during the DWT
+</p><!-- l. 71 --><p class='indent'>   There are different alternatives for recovering the “lost” phase during the DWT
 (in the 1D case):
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-1004x1'>MC-then-downsample: Perform first the MC stage directly over the output
+<li class='enumerate' id='x1-3002x1'>MC-then-downsample: Perform first the MC stage directly over the output
      of the analysis filters, and then, selectively downsample the result. Notice
      that the downsampler should select the right phase, depending on the
      type of motion detected (“odd” or “even”). This information (the selected
      phase), should be available at the decoder, along with the motion fields.
      </li>
-<li class='enumerate' id='x1-1006x2'>Delay-then-DWT: Perform two identical DWTs, one to the original signal,
+<li class='enumerate' id='x1-3004x2'>Delay-then-DWT: Perform two identical DWTs, one to the original signal,
+                                                                  
+
+                                                                  
+     and the other to a one-sample delayed signal (remember than a movement
+     of one pixel will change the phase at the output of the DWT). Thus, the
+     the DWT applied to the original signal will generate one of the phases and
+     the DWT applied to the delayed signal will generate the other one.
+     </li>
+<li class='enumerate' id='x1-3006x3'>CODWT: Use the current (single phase) L and H coefficients to compute
+     the  missing  phase,  using  the  CODWT  (Complete-to-Overcomplete
+     DWT) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span> (a new type of DWT applied to the DWT coefficients).</li></ol>
+<!-- l. 91 --><p class='noindent'>Each alternative has pros and cons. If the DWT has been implemented using
+convolution, MC-then-downsample should be a fast alternative. However, if the DWT
+uses Lifting, Multiple-DWT-then-MC should be fast also, because only one phase is
+computed by the DWT. These two options can be used with any DWT
+filters. On the other hand, CODWT needs specific designs form each DWT
+filters. Notice that, in any case, the solution is reached after using the ODWT
+domain.
+</p><!-- l. 98 --><p class='indent'>   In the 2D case, and always working with only one level of the DWT, we have up
+to four different phases: (even, even)-, (even, odd)-, (odd, even)-, and (odd,
+odd)-phase coefficients. Thus, depending on the type of motion detected, the
+corresponding phase should be selected.
+</p><!-- l. 103 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='near-shiftinvariance-in-the-idwt-interpolated-dwt-domain'><span class='titlemark'>1.3   </span> <a id='x1-40001.3'></a>Near shift-invariance in the IDWT (Interpolated DWT) domain</h4>
+<!-- l. 104 --><p class='noindent'>As it was commented before, the causant of the shift-variance in the critically
+sampled DWT domain is the use of the downsamplers. At this point we have
+basically two different alternatives:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-4002x1'>Use the Algorithme à Trous (AaT) <span class='cite'>[<a href='#Xmallat1999wavelet'>6</a>]</span>, which removes the downsamplers
+     from the DWT, generating the so called Overcomplete DWT (ODWT).
+     Notice that, because the downsamplers are removed, the aliasing artifacts
+     produced by the downsamplers is also avoided.
+     </li>
+<li class='enumerate' id='x1-4004x2'>Approximate the AaT coefficients by interpolating the DWT coefficients
+     using the DWT synthesis filters. In this case, the aliasing is not avoided,
+     but the shift-variance problem is reduced.</li></ol>
+                                                                  
+
+                                                                  
+<!-- l. 119 --><p class='indent'>   Unfortunately, DWT decompositions are shift-variant as a consequence of the
+downsampling performed during the DWT to achieve a critical representation. This
+can be seen in the Fig. <a href='#x1-4005r1'>1<!-- tex4ht:ref: fig:DWT  --></a> were some DWT coefficients of a test video with three
+frames has been shown. As it can be seen, when the circle moves to the left only one
+pixel (as happens between the frames 0 and 1), the value of the coefficients that
+correspond to the circunference of the circle are different between the reference frame
+(0) and the predicted frame (1). This makes quite difficult to estimate and
+compensate the motion between frames. Notice also that the effects of shift-variance
+is also visible after using the inverse transform when the coefficients are filtered or
+quantized, because the aliasing between the filters is not completely cancelled in this
+case <span class='cite'>[<a href='#Xbradley2003shift'>2</a>]</span>.
+</p>
+   <figure class='figure' id='-a-demonstration-of-the-shiftvariance-of-the-dwt-similar-results-have-been-obtained-for-other-filters-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomaindwtshiftinvarianceipynbnotebook-'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-2'><colgroup id='TBL-2-1g'><col id='TBL-2-1' /><col id='TBL-2-2' /><col id='TBL-2-3' /></colgroup><tr id='TBL-2-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 136 --><p class='noindent'><div style='text-align:center;'> <img src='frame_0_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 136 --><p class='noindent'><div style='text-align:center;'> <img src='frame_1_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 136 --><p class='noindent'><div style='text-align:center;'> <img src='frame_2_Y.png' /> </div>                                                                    </p></td></tr><tr id='TBL-2-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-2-1' style='white-space:nowrap; text-align:center;'> </td><td class='td11' id='TBL-2-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 137 --><p class='noindent'><div style='text-align:center;'> <img src='movement_0.svg' /> </div>  </p> </td><td class='td11' id='TBL-2-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 137 --><p class='noindent'><div style='text-align:center;'> <img src='movement_1.svg' /> </div> </p></td>
+</tr><tr id='TBL-2-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-2-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-2-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-2-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LH.png' /> </div> </p></td>
+</tr><tr id='TBL-2-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-5-1' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HL.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-6-1' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HH.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 142 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 142 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 143 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 143 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LH.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-9-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-9-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-9-2' style='white-space:nowrap; text-align:center;'> <!-- l. 144 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-9-3' style='white-space:nowrap; text-align:center;'> <!-- l. 144 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-2-10-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-10-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-2-10-2' style='white-space:nowrap; text-align:center;'> <!-- l. 145 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-2-10-3' style='white-space:nowrap; text-align:center;'> <!-- l. 145 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HH.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-4005r1'></a>
+<a id='x1-4006'></a>
+<figcaption class='caption'><span class='id'>Figure 1: </span><span class='content'>A demonstration of the shift-variance of the DWT. Similar results
+have been obtained for other filters. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/DWT_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-4005r1  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 153 --><p class='indent'>   However, suprisingly, at it can be also seen in the Fig. <a href='#x1-4005r1'>1<!-- tex4ht:ref: fig:DWT  --></a>, when the circle has
+traveled two pixels (frames 0 and 2), a perfect match is achieved! The reason why the
+1-pixel motion generates different coefficients in the reference and the predicted
+frames, and the same coefficients for a 2-pixel motion is because, in the first case the
+right coefficients were discarded by the downsamplers, and in the second case
+not.
+</p><!-- l. 161 --><p class='indent'>   Usually, we call <span class='ecti-1000'>phases </span>to the two possible coefficients resulting from one (1D)
+filter to be subsampled, being the even phase, the even coefficients, and the odd
+phase, the odd coefficients. Therefore, when the motion is of type “even” (when we
+have a \(2N\)-pixels motion), we should use the even phase to compensate the frames, and
+viceversa (use the odd phase to compensate a \(2N+1\)-pixels motion). Notice that in the 2D
+case, and always working with only one level of the DWT, we have up to four
+different phases: (even, even)-, (even, odd)-, (odd, even)-, and (odd, odd)-phase
+coefficients. Thus, depending on the type of motion detected, the corresponding
+phase should be selected.
+</p>
+   <h4 class='subsectionHead' id='recovering-the-lost-phases'><span class='titlemark'>1.4   </span> <a id='x1-50001.4'></a>Recovering the lost phases</h4>
+   <figure class='figure' id='-a-demonstration-of-the-shiftinvariance-of-the-odwt-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainodwtshiftinvarianceipynbnotebook-'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-3'><colgroup id='TBL-3-1g'><col id='TBL-3-1' /><col id='TBL-3-2' /><col id='TBL-3-3' /></colgroup><tr id='TBL-3-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 178 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 178 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 178 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-2-1' style='white-space:nowrap; text-align:center;'> <!-- l. 179 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 179 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 179 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LH.png' /> </div> </p></td>
+</tr><tr id='TBL-3-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 180 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 180 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 180 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 181 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 181 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 181 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HH.png' /> </div> </p></td>
+</tr><tr id='TBL-3-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-5-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 182 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 182 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-3-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-6-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 183 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 183 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LH.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-3-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 184 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 184 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-3-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 185 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 185 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HH.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-5001r2'></a>
+<a id='x1-5002'></a>
+<figcaption class='caption'><span class='id'>Figure 2:  </span><span class='content'>A  demonstration  of  the  shift-invariance  of  the  ODWT.  See  this
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/ODWT_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-5001r1  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 192 --><p class='indent'>   There are different alternatives for regenerating the phases discarded by the
+subsamplers of the DWT. This is equivalent to compute the Overcomplete DWT
+(ODWT) <span class='cite'>[<a href='#Xmallat1999wavelet'>6</a>]</span>.
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-5004x1'>Use the Algorithme à Trous <span class='cite'>[<a href='#Xmallat1999wavelet'>6</a>]</span>, which basically consists in removing
+     the downsamplers, avoiding thus the aliasing artifacts generated by the
+     noncompliance with the sampling theorem. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/regenerating.ipynb'>notebook</a>.
+     </li>
+<li class='enumerate' id='x1-5006x2'>Considering the previous experiments, it’s easy to see that if we shift the
+     signal one sample and perform the DWT, we get the “lost” phase. This
+     method has been used to perform efficient MC in the DWT domain <span class='cite'>[<a href='#Xpark2000motion'>7</a>, <a href='#Xli2001all'>5</a>]</span>.
+     See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/ODWT_with_delay.ipynb'>notebook</a>.
+     </li>
+<li class='enumerate' id='x1-5008x3'>Apply               some               transform               (such               as
+     for example, the CODWT (Complete-to-Overcomplete DWT) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span> to the
+     DWT to reconstruct the ODWT.</li></ol>
+<!-- l. 210 --><p class='noindent'>The Fig. <a href='#x1-13001r8'>8<!-- tex4ht:ref: fig:odwt  --></a> shows the shift invariance of the ODWT.
+</p>
+   <h4 class='subsectionHead' id='about-using-the-lost-phases-in-ibmc'><span class='titlemark'>1.5   </span> <a id='x1-60001.5'></a>About using the lost phases in IBMC</h4>
+<!-- l. 213 --><p class='noindent'>Up to date, all the video codecs that use critically sampled IBMC also use
+<a href='https://vicente-gonzalez-ruiz.github.io/video_compression/'>block-based motion compensation</a>. This technique divides the frames into
+non-overlaping blocks and computes a motion vector for every block, that provides a
+projection (a prediction) \(\hat {P}\) of the reference frame \(R\) that must be as close as
+possible to the predicted frame \(P\). These blocks usually have a size of 16x16
+pixels.
+</p><!-- l. 222 --><p class='indent'>   The use of blocks imples that:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-6002x1'>If \(N\) is the number of pixels in a frame, \(N/256\) (for 16x16 blocks) is the number of
+     motion vectors. Therefore, if the motion vectors field has to be sent to the
+     decoder, the data overhead is small (although this depends on the length
+     of the representation of the texture).
+                                                                  
+
+                                                                  
+     </li>
+<li class='enumerate' id='x1-6004x2'>All the coefficients that correspond to the same block has the same phase.
+     Thus, if the phase also has to be sent to the decoder, again, the data
+     overhead can be considered small.</li></ol>
+<!-- l. 234 --><p class='indent'>   Unfortunately, there is a problem with mixing the phases. To reconstruct the
+border pixels of the blocks, the adjacent (with the same phase) coefficients must be
+also used by the decoder (see this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/mixing_phases.ipynb'>notebook</a>). For this reason, the size of the
+blocks affects to the compression ratio (the smaller the blocks, the higher the
+number of adjacent coefficients, and therefore, the lower the compression
+ratio). We can think that this effect can be mitigated using larger block
+sizes, but this will also affect to the compression ratio because the quality of
+the predictions worsen with the increment of the size of the blocks. This
+carries an optimization problem that it’s hard to solve, especially in real-time
+applications.
+</p><!-- l. 247 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='mc-in-the-laplacian-pyramid'><span class='titlemark'>1.6   </span> <a id='x1-70001.6'></a>MC in the Laplacian Pyramid</h4>
+<!-- l. 248 --><p class='noindent'>The Laplacian Pyramid, that was proposed by Burt and Adelson <span class='cite'>[<a href='#Xburt1987laplacian'>3</a>]</span> and has been
+used for the design of spatially-scalable image and video codecs, such as
+SHVC <span class='cite'>[<a href='#Xsullivan2012overview'>8</a>]</span>.
+</p>
+   <figure class='figure' id='-a-demonstration-of-the-shiftinvariance-of-the-lp-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainlpshiftinvarianceipynbnotebook-'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-4'><colgroup id='TBL-4-1g'><col id='TBL-4-1' /><col id='TBL-4-2' /><col id='TBL-4-3' /></colgroup><tr id='TBL-4-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-4-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 256 --><p class='noindent'><div style='text-align:center;'> <img src='f0_LP_level1.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-4-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 256 --><p class='noindent'><div style='text-align:center;'> <img src='f1_LP_level1.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-4-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 256 --><p class='noindent'><div style='text-align:center;'> <img src='f2_LP_level1.png' /> </div>                                                                    </p></td></tr><tr id='TBL-4-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-4-2-1' style='white-space:nowrap; text-align:center;'> <!-- l. 257 --><p class='noindent'><div style='text-align:center;'> <img src='f0_LP_level0.png' /> </div>  </p> </td><td class='td11' id='TBL-4-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 257 --><p class='noindent'><div style='text-align:center;'> <img src='f1_LP_level0.png' /> </div>  </p> </td><td class='td11' id='TBL-4-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 257 --><p class='noindent'><div style='text-align:center;'> <img src='f2_LP_level0.png' /> </div> </p></td>
+</tr><tr id='TBL-4-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-4-3-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-4-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 258 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_LP_level1.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-4-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 258 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_LP_level1.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-4-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-4-4-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-4-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 259 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_LP_level0.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-4-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 259 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_LP_level0.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-7001r3'></a>
+<a id='x1-7002'></a>
+<figcaption class='caption'><span class='id'>Figure 3: </span><span class='content'>A demonstration of the shift-invariance of the LP. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/LP_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-7001r1  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 266 --><p class='indent'>   The LP is a frame expansion that generates an expanded (not critical)
+octave-band decomposition, and in some way, it can be considered one of the
+precursors of the dyadic DWT. Unlike in the DWT, such expansion is consequence of
+that the filters used for creating the LP are not orthogonal and therefore, they do not
+cancel the aliasing between them (see this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/LP_is_not_critical.ipynb'>notebook</a>) when their downsampled
+outputs are added.
+</p><!-- l. 274 --><p class='indent'>   As a consequence of that the downsampling can not be used without violating the
+perfect reconstruction, the redundancy in the LP tends to 2 with the number of
+levels of the pyramid, which affects negatively to the compression ratio.
+On the contrary, an advantage of this is that the LP is shift-invariant in
+the high-frequency subband (see the Fig. <a href='#x1-15001r9'>9<!-- tex4ht:ref: fig:LP  --></a>), and of course, like the DWT,
+in the low-frequency subband when the motion is a multiple of 2 (see the
+Fig. <a href='#x1-15001r9'>9<!-- tex4ht:ref: fig:LP  --></a>)..
+</p>
+   <figure class='figure' id='-a-demonstration-of-the-near-shiftinvariance-in-the-h-subband-of-the-pdwt-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainpdwtshiftinvarianceipynbnotebook-'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-5'><colgroup id='TBL-5-1g'><col id='TBL-5-1' /><col id='TBL-5-2' /><col id='TBL-5-3' /></colgroup><tr id='TBL-5-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-5-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 286 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_iH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-5-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 286 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_iH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-5-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 286 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_iH.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-5-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-5-2-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-5-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 287 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_iH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-5-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 287 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_iH.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-7003r4'></a>
+<a id='x1-7004'></a>
+<figcaption class='caption'><span class='id'>Figure 4: </span><span class='content'>A demonstration of the near shift-invariance in the [H] subband of
+the PDWT. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/PDWT_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-7003r1  -->
+                                                                  
+
+                                                                  
+   </figure>
+   <h4 class='subsectionHead' id='pyramid-dwt-pdwt'><span class='titlemark'>1.7   </span> <a id='x1-80001.7'></a>Pyramid DWT (PDWT)</h4>
+<!-- l. 296 --><p class='noindent'>Inspired in the LP, we can estimate and componsensate the motion in an alternative
+representation of the DWT decomposition, that we have called Pyramid DWT.
+In fact, a PDWT decomposition is a special case of a LP where the filters
+are (bi)orthogonal DWT filters (in this case, we say that the LP is a tight
+frame and therefore, it can be downsampled without lossing the perfect
+reconstruction).
+</p><!-- l. 303 --><p class='indent'>   The 1-levels PDWT (that has two levels in its pyramid) of the frame \(X\) is defined
+by \begin {equation}  \{L, [H]\} = \{LL, \text {DWT}^{-1}(0, LH, HL, HH)\} = \{LL, \text {DWT}^{-1}(0, H)\}, \label {eq:PDWT}  \end {equation}
+where \begin {equation}  \{LL, LH, HL, HH\} = \text {DWT}(X). \label {eq:DWT}  \end {equation}
+</p><!-- l. 315 --><p class='indent'>   The \(S\) levels CS-LPT\(^S\) is computed simply by appliying the Eq. <span class='ecbx-1000'>??</span> to the subband \(L\),
+recursively.
+</p>
+   <figure class='figure' id='-prediction-error-between-frames-and-in-the-pdwt-domain-left-and-the-dwt-domain-right-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainpdwtshiftinvarianceipynbnotebook-the-prediction-error-between-frames-and-is-zero-remember-that-we-transmit-h-not-h-'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-6'><colgroup id='TBL-6-1g'><col id='TBL-6-1' /><col id='TBL-6-2' /></colgroup><tr id='TBL-6-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-6-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 321 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_iH_error.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-6-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 322 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LHHLHH_error.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-8001r5'></a>
+<a id='x1-8002'></a>
+<figcaption class='caption'><span class='id'>Figure 5: </span><span class='content'>Prediction error between frames 0 and 1, in the PDWT domain (left)
+and the DWT domain (right). See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/PDWT_shift_invariance.ipynb'>notebook</a>. The prediction error between
+frames 0 and 2 is zero. Remember that we transmit \(H\), not \([H]\).
+</span></figcaption><!-- tex4ht:label?: x1-8001r1  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 331 --><p class='indent'>   The PDWT is only near shift-invariant as it can be seen in the Fig. <a href='#x1-15003r10'>10<!-- tex4ht:ref: fig:PDWT  --></a>. However,
+it has several advantages:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-8004x1'>The CS-LPT is as compact as the DWT.
+     </li>
+<li class='enumerate' id='x1-8006x2'>The phases are not considered, which simplifies the ME/MC process and
+     enables the use of any DWT filter.
+     </li>
+<li class='enumerate' id='x1-8008x3'>The error generated by the lack of shift-invariance for the odd-type motion
+     is smaller than for the DWT (see Fig. <a href='#x1-4005r1'>1<!-- tex4ht:ref: fig:DWT  --></a>). As it can be seen in the Fig <a href='#x1-16001r11'>11<!-- tex4ht:ref: fig:PDWT_error  --></a>,
+     the energy of the error is the same in \([H]\) and \(H\), but the energy is concentrated
+     in only one critical subband (HL).</li></ol>
+   <h4 class='subsectionHead' id='mc-in-the-pdwt-domain'><span class='titlemark'>1.8   </span> <a id='x1-90001.8'></a>MC in the PDWT domain</h4>
+<!-- l. 346 --><p class='noindent'>It’s reasonable to expect that the motion of an object between the frames \(R\) and \(P\) must
+move their low and the high frecuencies in the same amount of pixels. With
+this idea in mind, we estimate the motion in the \([H]\) subband using only the
+information provided by the low-frequency subband \(L\). More concretely, we
+implement:
+</p>
+   <figure class='figure' id='-a-demonstration-of-the-near-shiftinvariance-in-the-l-pdwt-subband-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainillshiftinvarianceipynbnotebook-'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-7'><colgroup id='TBL-7-1g'><col id='TBL-7-1' /><col id='TBL-7-2' /><col id='TBL-7-3' /></colgroup><tr id='TBL-7-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-7-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 355 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_iL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-7-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 355 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_iL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-7-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 355 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_iL.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-7-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-7-2-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-7-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 356 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_iL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-7-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 356 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_iL.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-9001r6'></a>
+<a id='x1-9002'></a>
+<figcaption class='caption'><span class='id'>Figure 6:  </span><span class='content'>A  demonstration  of  the  near  shift-invariance  in  the  [L]  (PDWT)
+subband. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/iLL_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-9001r1  -->
+                                                                  
+
+                                                                  
+   </figure>
+     <ol class='enumerate1'>
+<li class='enumerate' id='x1-9004x1'>In order to increase the accuracy of the ME (see the Fig. <a href='#x1-17001r12'>12<!-- tex4ht:ref: fig:iL  --></a>, we interpolate the
+     low-frequency subbands of \(R\) and \(P\): \begin {equation}  [P.L] = \text {DWT}^{-1}(P.L, 0),  \end {equation}
+     \begin {equation}  [R.L] = \text {DWT}^{-1}(R.L, 0).  \end {equation}
+     </li>
+<li class='enumerate' id='x1-9006x2'>Estimate the motion between \([P.L]\) and \([R.L]\). The output of this step is a
+     motion vectors field \(\overset {[P.L]\rightarrow [R.L]}{V}\), that describes how to project the \([P.L]\) onto \([R.L]\).
+     Notice that \(\overset {[P.L]\rightarrow [R.L]}{V}\) should also be a good candidate for mapping \(P\) onto
+     \(R\).<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-9007f1'></a>
+     </li>
+<li class='enumerate' id='x1-9009x3'>Use \(\overset {[P.L]\rightarrow [R.L]}{V}\) and \([R.L]\) to generate a prediction \([\hat {P}.L]\), and \([R.H]\) to generate a prediction \([\hat {P}.H]\). We define
+     the prediction error in the low-frequency subband as \begin {equation}  [E.L] = [P.L] - [\hat {P}.L], \label {eq:prediction_error_L}  \end {equation}
+     and the prediction error in the high-frequency subband as \begin {equation}  [E.H] = [P.H] - [\hat {P}.H]. \label {eq:prediction_error}  \end {equation}
+     Notice that \(\overset {[P.L]\rightarrow [R.L]}{V}\) depends only on \(R.L\) and \(P.L\), not on the high frequency subbands.
+     </li>
+<li class='enumerate' id='x1-9011x4'>Compute the Element-Wise (EW) minimum of \([P.L]\) and \([E.L]\): \begin {equation}  \{[T],[M]\} = \text {EW-min}([P.L], [E.L]) \label {eq:EW-min}  \end {equation}
+     where \begin {equation}  [T]_{i,j}=\text {min}([P.L]_{i,j}, [E.L]_{i,j})  \end {equation}
+     and \([M]\) is a binary matrix defined by \begin {equation}  [M]_{i,j} = \left \{ \begin {array}{ll} 0 &amp; \text {if}~[P.L]_{i,j} &lt; [E.L]_{i,j} ~(\text {I-type~coefficient})\\ 1 &amp; \text {otherwise}~(\text {P-type~coefficient}). \end {array} \right . \label {eq:matrix}  \end {equation}
+     </li>
+<li class='enumerate' id='x1-9013x5'>
+     <!-- l. 423 --><p class='noindent'>Output \begin {equation}  [O]_{i,j} = \left \{ \begin {array}{ll} [P.H]_{i,j} &amp; \text {if}~[M]_{i,j} = 0~(\text {I-type~coefficient})\\ {[}E.H{]}_{i,j} &amp; \text {otherwise}~(\text {P-type~coefficient}). \end {array} \right . \label {eq:output}  \end {equation}
+     Realize that it must hold that \begin {equation}  \sigma ^2_O \le \sigma ^2_E, \label {eq:vars}  \end {equation}
+     where \(\sigma ^2\) denotes the variance, \(O=\text {DWT}([O])\), and \(E=\text {DWT}([O])\). Eq. <span class='ecbx-1000'>??</span> implies that \begin {equation}  \text {CR}_O \ge \text {CR}_E \label {eq:crs}  \end {equation}
+     should hold, where CR stands for Compression Ratio.
+     </p><!-- l. 446 --><p class='noindent'>\(O\) is the high-frequency subband that we will send from the encoder to the
+     decoder, and it can be seen, it is composed of prediction error coefficients
+     and original coefficients. Making a comparison with the procedure
+     followed in most video coding standards, the prediction error coefficients
+                                                                  
+
+                                                                  
+     represent predicted blocks (P-type blocks) or skipped blocks (S-type
+     blocks)<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-9014f2'></a>,
+     and the original coefficients are equivalent to the intra(coded) blocks (I-type
+     blocks).</p></li></ol>
+   <h4 class='subsectionHead' id='subpixel-accuracy'><span class='titlemark'>1.9   </span> <a id='x1-100001.9'></a>Subpixel accuracy</h4>
+<!-- l. 460 --><p class='noindent'>Objects in real scenes usually move a rational number of pixels, and therefore, even
+when the input frames seems to be the same, numerically they aren’t. To deal with
+this drawback, interpolation can be used to increase the resolution of the frames (MC
+in the frame domain) or the subbands (MC in the subband domain), performing thus
+a MC with increased accuracy.
+</p><!-- l. 467 --><p class='indent'>   Interpolation and DWT are both linear operators, and therefore, are
+interchangeable. This means that we can interpolate the input frames and work as if
+the motion where integer-pixel, or we can interpolate the DWT coefficients. In both
+options, the number of
+</p><!-- l. 473 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='mc-in-the-dwt-domain'><span class='titlemark'>2   </span> <a id='x1-110002'></a>MC in the DWT Domain</h3>
+<!-- l. 476 --><p class='noindent'>This technique is also known by In-Band Motion estimation and Compensation
+(IBMC) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span>, and it is motivated because MC can be used directly over DWT-images
+(for example, images that have been compressed with JPEG2000), without requiring
+the inverse and the forward DWT of each image. However, the critically sampled
+DWT domain is not shift invariant (see the Fig. <a href='#x1-12001r7'>7<!-- tex4ht:ref: fig:dwt_shift_variance  --></a>) and the coefficients of the
+reference image cannot be substracted directly to the coefficients of the predicted
+image.
+</p><!-- l. 486 --><p class='indent'>   Solutions<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-11001f3'></a>:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-11003x1'>Recompute the decimated coefficients from the existing ones, substracting
+     in a Overcomplete DWT (ODWT) domain.
+     </li>
+<li class='enumerate' id='x1-11005x2'>Compute  the  inverse  DWT,  compensate  in  the  image  domain,  and
+     compute the forward DWT of the residuals.</li></ol>
+                                                                  
+
+                                                                  
+<!-- l. 496 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='motion-estimation-in-the-critically-sampled-dwt-domain'><span class='titlemark'>3   </span> <a id='x1-120003'></a>Motion estimation in the critically sampled DWT domain</h3>
+   <figure class='figure' id='-a-demonstration-of-the-shiftvariance-of-the-dwt-as-it-can-be-seen-when-the-circle-has-been-moved-only-one-pixel-the-value-of-the-coefficients-that-correspond-to-the-circunference-of-the-circle-are-different-between-the-reference-frame-and-the-predicted-frame-similar-results-have-been-obtained-for-other-filters-see-the-notebook-httpsgithubcomvicentegonzalezruizmotioncompensationdwtdomainblobmaindwtshiftinvarianceipynbshift-invariance-in-the-dwt-domain-'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-8'><colgroup id='TBL-8-1g'><col id='TBL-8-1' /><col id='TBL-8-2' /><col id='TBL-8-3' /></colgroup><tr id='TBL-8-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 502 --><p class='noindent'><div style='text-align:center;'> <img src='frame_0_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 502 --><p class='noindent'><div style='text-align:center;'> <img src='frame_1_Y.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 502 --><p class='noindent'><div style='text-align:center;'> <img src='frame_2_Y.png' /> </div>                                                                    </p></td></tr><tr id='TBL-8-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-2-1' style='white-space:nowrap; text-align:center;'> </td><td class='td11' id='TBL-8-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 503 --><p class='noindent'><div style='text-align:center;'> <img src='movement_0.svg' /> </div>  </p> </td><td class='td11' id='TBL-8-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 503 --><p class='noindent'><div style='text-align:center;'> <img src='movement_1.svg' /> </div> </p></td>
+</tr><tr id='TBL-8-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 504 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 504 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 504 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-8-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 505 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-8-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 505 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-8-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 505 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_LH.png' /> </div> </p></td>
+</tr><tr id='TBL-8-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-5-1' style='white-space:nowrap; text-align:center;'> <!-- l. 506 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 506 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 506 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HL.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-8-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-6-1' style='white-space:nowrap; text-align:center;'> <!-- l. 507 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 507 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_HH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 507 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_HH.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-8-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-8-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 508 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 508 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-8-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-8-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 509 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 509 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_LH.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-8-9-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-9-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-8-9-2' style='white-space:nowrap; text-align:center;'> <!-- l. 510 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-9-3' style='white-space:nowrap; text-align:center;'> <!-- l. 510 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-8-10-' style='vertical-align:baseline;'><td class='td11' id='TBL-8-10-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-8-10-2' style='white-space:nowrap; text-align:center;'> <!-- l. 511 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-8-10-3' style='white-space:nowrap; text-align:center;'> <!-- l. 511 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_HH.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-12001r7'></a>
+<a id='x1-12002'></a>
+<figcaption class='caption'><span class='id'>Figure 7: </span><span class='content'>A demonstration of the shift-variance of the DWT. As it can be seen,
+when the circle has been moved only one pixel, the value of the coefficients that
+correspond to the circunference of the circle are different between the reference
+frame and the predicted frame. Similar results have been obtained for other
+filters. See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/DWT_shift_invariance.ipynb'>Shift invariance in the DWT domain</a>.
+</span></figcaption><!-- tex4ht:label?: x1-12001r3  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 524 --><p class='indent'>   This technique is also known by In-Band Motion estimation and Compensation
+(IBMC) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span>. ME in the DWT is interesting because the multiresolution structure
+generated by the DWT can speed-up the computation of the motion information
+because, potentially, we can use hierarchical ME directly over the DWT domain.
+However, the DWT, that is critically sampled, is not shift invariant (see the
+Fig. <a href='#x1-12001r7'>7<!-- tex4ht:ref: fig:dwt_shift_variance  --></a>). This basically means that the same signal displaced (or delayed) one
+sample generate different DWT coefficients. Therefore, we cannot estimate nor
+compensate the motion in the DWT domain simply comparing blocks of the
+signal.
+</p><!-- l. 536 --><p class='indent'>   Notice also that the effects of shift-variance is also visible after using the inverse
+transform when the coefficients are filtered or quantized, because the aliasing between
+the filters is not completely cancelled in this case <span class='cite'>[<a href='#Xbradley2003shift'>2</a>]</span>.
+</p><!-- l. 541 --><p class='indent'>   The reason why the 1-pixel movement is generating different coefficients in the
+reference and the predicted frames is because a 1-pixel motion cannot be represented
+using always the same phase (remember that with the downsampler we are basically
+selecting only one the two possible phases of the output of the analysis filters: the
+even samples or the odd samples). Lets suppose that the downsampler discards the
+odd coefficients (let’s refer them as odd-phase coefficients). In this case, the
+even-phase cofficients of the reference frame are the same than the odd-phase
+coefficients of the predicted frame (this can be seen in this notebook). Therefore, in
+the 1D case, when the motion is “even”-type (that is, a displacement of a even
+number of samples) we should compensate the even-phase coefficients of the
+reference and the predicted frame, while when the motion is “odd”-type we
+should compensate the odd-phase coefficients of the predicted frame with a
+prediction generated with the even-phase coefficients of the reference frame, or
+viceversa.
+</p><!-- l. 558 --><p class='indent'>   There are different alternatives for recovering the “lost” phase during the DWT
+(in the 1D case):
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-12004x1'>MC-then-downsample: Perform first the MC stage directly over the output
+     of the analysis filters, and then, selectively downsample the result. Notice
+     that the downsampler should select the right phase, depending on the
+     type of motion detected (“odd” or “even”). This information (the selected
+     phase), should be available at the decoder, along with the motion fields.
+     </li>
+<li class='enumerate' id='x1-12006x2'>Delay-then-DWT: Perform two identical DWTs, one to the original signal,
      and the other to a one-sample delayed signal (remember than a movement
      of one pixel will change the phase at the output of the DWT). Thus, the
      DWT applied to the original signal will generate one of the phases and
@@ -95,31 +519,31 @@ viceversa.
                                                                   
      the DWT applied to the delayed signal will generate the other one.
      </li>
-<li class='enumerate' id='x1-1008x3'>CODWT: Use the current (single phase) L and H coefficients to compute
+<li class='enumerate' id='x1-12008x3'>CODWT: Use the current (single phase) L and H coefficients to compute
      the  missing  phase,  using  the  CODWT  (Complete-to-Overcomplete
      DWT) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span> (a new type of DWT applied to the DWT coefficients).
      </li>
-<li class='enumerate' id='x1-1010x4'>Use the Algorithme à Trous (AaT) <span class='cite'>[<a href='#Xmallat1999wavelet'>4</a>]</span>, which removes the downsamplers
+<li class='enumerate' id='x1-12010x4'>Use the Algorithme à Trous (AaT) <span class='cite'>[<a href='#Xmallat1999wavelet'>6</a>]</span>, which removes the downsamplers
      from the DWT, generating the so called Overcomplete DWT (ODWT).
      Notice that, because the downsamplers are removed, the aliasing artifacts
      produced by the downsamplers is also avoided.
      </li>
-<li class='enumerate' id='x1-1012x5'>Approximate the AaT coefficients by interpolating the DWT coefficients
+<li class='enumerate' id='x1-12012x5'>Approximate the AaT coefficients by interpolating the DWT coefficients
      using the DWT synthesis filters. In this case, the aliasing is not avoided,
      but the shift-variance problem is reduced.</li></ol>
-<!-- l. 98 --><p class='noindent'>Each alternative has pros and cons. If the DWT has been implemented using
+<!-- l. 587 --><p class='noindent'>Each alternative has pros and cons. If the DWT has been implemented using
 convolution, MC-then-downsample should be a fast alternative. However, if the DWT
 uses Lifting, Multiple-DWT-then-MC should be fast also, because only one phase is
 computed by the DWT. These two options can be used with any DWT
 filters. On the other hand, CODWT needs specific designs form each DWT
 filters. Notice that, in any case, the solution is reached after using the ODWT
 domain.
-</p><!-- l. 106 --><p class='indent'>   In the 2D case, and always working with only one level of the DWT, we have up
+</p><!-- l. 595 --><p class='indent'>   In the 2D case, and always working with only one level of the DWT, we have up
 to four different phases: (even, even)-, (even, odd)-, (odd, even)-, and (odd,
 odd)-phase coefficients. Thus, depending on the type of motion detected, the
 corresponding phase should be selected.
 </p>
-   <h4 class='subsectionHead' id='recovering-the-lost-phases'><span class='titlemark'>1.1   </span> <a id='x1-20001.1'></a>Recovering the lost phases</h4>
+   <h4 class='subsectionHead' id='recovering-the-lost-phases1'><span class='titlemark'>3.1   </span> <a id='x1-130003.1'></a>Recovering the lost phases</h4>
    <figure class='figure' id='-a-demonstration-of-the-shiftinvariance-of-the-odwt-see-the-notebook-httpsgithubcomvicentegonzalezruizmotioncompensationdwtdomainblobmainodwtshiftinvarianceipynbshift-invariance-in-the-overcomplete-dwt-domain-'> 
 
                                                                   
@@ -128,49 +552,49 @@ corresponding phase should be selected.
                                                                   
 
                                                                   
-<div class='tabular'> <table class='tabular' id='TBL-3'><colgroup id='TBL-3-1g'><col id='TBL-3-1' /><col id='TBL-3-2' /><col id='TBL-3-3' /></colgroup><tr id='TBL-3-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 138 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-2-1' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 139 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LH.png' /> </div> </p></td>
-</tr><tr id='TBL-3-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 140 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-3-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-3-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 141 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HH.png' /> </div> </p></td>
-</tr><tr id='TBL-3-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-5-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 142 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 142 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LL.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-6-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 143 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 143 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LH.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 144 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 144 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HL.svg' /> </div>                                                                    </p></td>
-</tr><tr id='TBL-3-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-3-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 145 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-3-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 145 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HH.svg' /> </div>                                                                    </p></td></tr></table>
-</div> <a id='x1-2001r2'></a>
-<a id='x1-2002'></a>
-<figcaption class='caption'><span class='id'>Figure 2:  </span><span class='content'>A  demonstration  of  the  shift-invariance  of  the  ODWT.  See  the
+<div class='tabular'> <table class='tabular' id='TBL-9'><colgroup id='TBL-9-1g'><col id='TBL-9-1' /><col id='TBL-9-2' /><col id='TBL-9-3' /></colgroup><tr id='TBL-9-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 669 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 669 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 669 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-9-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-2-1' style='white-space:nowrap; text-align:center;'> <!-- l. 670 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-9-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 670 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_LH.png' /> </div>  </p> </td><td class='td11' id='TBL-9-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 670 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_LH.png' /> </div> </p></td>
+</tr><tr id='TBL-9-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-3-1' style='white-space:nowrap; text-align:center;'> <!-- l. 671 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 671 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 671 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HL.png' /> </div>                                                                    </p></td></tr><tr id='TBL-9-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-4-1' style='white-space:nowrap; text-align:center;'> <!-- l. 672 --><p class='noindent'><div style='text-align:center;'> <img src='f0_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-9-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 672 --><p class='noindent'><div style='text-align:center;'> <img src='f1_ohaar_HH.png' /> </div>  </p> </td><td class='td11' id='TBL-9-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 672 --><p class='noindent'><div style='text-align:center;'> <img src='f2_ohaar_HH.png' /> </div> </p></td>
+</tr><tr id='TBL-9-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-5-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-9-5-2' style='white-space:nowrap; text-align:center;'> <!-- l. 673 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-5-3' style='white-space:nowrap; text-align:center;'> <!-- l. 673 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-9-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-6-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-9-6-2' style='white-space:nowrap; text-align:center;'> <!-- l. 674 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_LH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-6-3' style='white-space:nowrap; text-align:center;'> <!-- l. 674 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_LH.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-9-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-7-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-9-7-2' style='white-space:nowrap; text-align:center;'> <!-- l. 675 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-7-3' style='white-space:nowrap; text-align:center;'> <!-- l. 675 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HL.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-9-8-' style='vertical-align:baseline;'><td class='td11' id='TBL-9-8-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-9-8-2' style='white-space:nowrap; text-align:center;'> <!-- l. 676 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_ohaar_HH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-9-8-3' style='white-space:nowrap; text-align:center;'> <!-- l. 676 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_ohaar_HH.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-13001r8'></a>
+<a id='x1-13002'></a>
+<figcaption class='caption'><span class='id'>Figure 8:  </span><span class='content'>A  demonstration  of  the  shift-invariance  of  the  ODWT.  See  the
 notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/ODWT_shift_invariance.ipynb'>Shift invariance in the Overcomplete DWT domain</a>.
-</span></figcaption><!-- tex4ht:label?: x1-2001r1  -->
+</span></figcaption><!-- tex4ht:label?: x1-13001r3  -->
                                                                   
 
                                                                   
    </figure>
-<!-- l. 152 --><p class='indent'>   There are different alternatives for regenerating the phases discarded by the
+<!-- l. 683 --><p class='indent'>   There are different alternatives for regenerating the phases discarded by the
 subsamplers of the DWT. This is equivalent to compute the Overcomplete DWT
-(ODWT) <span class='cite'>[<a href='#Xmallat1999wavelet'>4</a>]</span>.
+(ODWT) <span class='cite'>[<a href='#Xmallat1999wavelet'>6</a>]</span>.
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-2004x1'>Use the Algorithme à Trous <span class='cite'>[<a href='#Xmallat1999wavelet'>4</a>]</span>, which basically consists in removing
+<li class='enumerate' id='x1-13004x1'>Use the Algorithme à Trous <span class='cite'>[<a href='#Xmallat1999wavelet'>6</a>]</span>, which basically consists in removing
      the downsamplers, avoiding thus the aliasing artifacts generated by the
      noncompliance with the sampling theorem. See the notebook .
      </li>
-<li class='enumerate' id='x1-2006x2'>Considering the previous experiments, it’s easy to see that if we shift the
+<li class='enumerate' id='x1-13006x2'>Considering the previous experiments, it’s easy to see that if we shift the
      signal one sample and perform the DWT, we get the “lost” phase. This
-     method has been used to perform efficient MC in the DWT domain <span class='cite'>[<a href='#Xpark2000motion'>5</a>, <a href='#Xli2001all'>3</a>]</span>.
+     method has been used to perform efficient MC in the DWT domain <span class='cite'>[<a href='#Xpark2000motion'>7</a>, <a href='#Xli2001all'>5</a>]</span>.
      See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/ODWT_with_delay.ipynb'>Computing the ODWT using a delay</a>.
      </li>
-<li class='enumerate' id='x1-2008x3'>Apply               some               transform               (such               as
+<li class='enumerate' id='x1-13008x3'>Apply               some               transform               (such               as
      for example, the CODWT (Complete-to-Overcomplete DWT) <span class='cite'>[<a href='#Xandreopoulos2005complete'>1</a>]</span> to the
      DWT to reconstruct the ODWT.</li></ol>
-<!-- l. 171 --><p class='noindent'>The Fig. <a href='#x1-2001r2'>2<!-- tex4ht:ref: fig:odwt  --></a> shows the shift invariance of the ODWT.
+<!-- l. 702 --><p class='noindent'>The Fig. <a href='#x1-13001r8'>8<!-- tex4ht:ref: fig:odwt  --></a> shows the shift invariance of the ODWT.
 </p>
-   <h4 class='subsectionHead' id='about-using-the-lost-phases-in-ibmc'><span class='titlemark'>1.2   </span> <a id='x1-30001.2'></a>About using the lost phases in IBMC</h4>
-<!-- l. 174 --><p class='noindent'>Up to date, all the video codecs that use critically sampled IBMC also use
-block-based motion compensation <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. This technique divides the frames into
+   <h4 class='subsectionHead' id='about-using-the-lost-phases-in-ibmc1'><span class='titlemark'>3.2   </span> <a id='x1-140003.2'></a>About using the lost phases in IBMC</h4>
+<!-- l. 705 --><p class='noindent'>Up to date, all the video codecs that use critically sampled IBMC also use
+block-based motion compensation <span class='cite'>[<a href='#Xvruiz__MC'>4</a>]</span>. This technique divides the frames into
 non-overlaping blocks and computes a motion vector for every block, that provides a
 projection (a prediction) \(\hat {P}\) of the reference frame \(R\) that must be as close as
 possible to the predicted frame \(P\). These blocks usually have a size of 16x16
 pixels.
-</p><!-- l. 182 --><p class='indent'>   The use of blocks imples that:
+</p><!-- l. 713 --><p class='indent'>   The use of blocks imples that:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-3002x1'>If \(N\) is the number of pixels in a frame, \(N/256\) (for 16x16 blocks) is the number of
+<li class='enumerate' id='x1-14002x1'>If \(N\) is the number of pixels in a frame, \(N/256\) (for 16x16 blocks) is the number of
      motion vectors. Therefore, if the motion vectors field has to be sent to the
      decoder, the data overhead is small (although this depends on the length
      of the representation of the texture).
@@ -178,10 +602,10 @@ pixels.
 
                                                                   
      </li>
-<li class='enumerate' id='x1-3004x2'>All the coefficients that correspond to the same block has the same phase.
+<li class='enumerate' id='x1-14004x2'>All the coefficients that correspond to the same block has the same phase.
      Thus, if the phase also has to be sent to the decoder, again, the data
      overhead can be considered small.</li></ol>
-<!-- l. 194 --><p class='indent'>   Unfortunately, there is a problem with mixing the phases. To reconstruct the
+<!-- l. 725 --><p class='indent'>   Unfortunately, there is a problem with mixing the phases. To reconstruct the
 border pixels of the blocks, the adjacent (with the same phase) coefficients must be
 also used by the decoder (see the notebook <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation_dwt_domain/blob/main/mixing_phases.ipynb'>Mixing phases in the DWT domain</a>). For
 this reason, the size of the blocks affects to the compression ratio (the smaller the
@@ -191,9 +615,171 @@ sizes, but this will also affect to the compression ratio because the quality of
 the predictions worsen with the increment of the size of the blocks. This
 carries an optimization problem that it’s hard to solve, especially in real-time
 applications.
-</p><!-- l. 210 --><p class='noindent'>
+</p><!-- l. 741 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>2   </span> <a id='x1-40002'></a>References</h3>
+   <h4 class='subsectionHead' id='mc-in-the-laplacian-pyramid1'><span class='titlemark'>3.3   </span> <a id='x1-150003.3'></a>MC in the Laplacian Pyramid</h4>
+<!-- l. 742 --><p class='noindent'>The Laplacian Pyramid, that was proposed by Burt and Adelson <span class='cite'>[<a href='#Xburt1987laplacian'>3</a>]</span> and has been
+used for the design of spatially-scalable image and video codecs, such as
+SHVC <span class='cite'>[<a href='#Xsullivan2012overview'>8</a>]</span>.
+</p>
+   <figure class='figure' id='-a-demonstration-of-the-shiftinvariance-of-the-lp-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainlpshiftinvarianceipynbnotebook-1'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-10'><colgroup id='TBL-10-1g'><col id='TBL-10-1' /><col id='TBL-10-2' /><col id='TBL-10-3' /></colgroup><tr id='TBL-10-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-10-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 750 --><p class='noindent'><div style='text-align:center;'> <img src='f0_LP_level1.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-10-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 750 --><p class='noindent'><div style='text-align:center;'> <img src='f1_LP_level1.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-10-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 750 --><p class='noindent'><div style='text-align:center;'> <img src='f2_LP_level1.png' /> </div>                                                                    </p></td></tr><tr id='TBL-10-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-10-2-1' style='white-space:nowrap; text-align:center;'> <!-- l. 751 --><p class='noindent'><div style='text-align:center;'> <img src='f0_LP_level0.png' /> </div>  </p> </td><td class='td11' id='TBL-10-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 751 --><p class='noindent'><div style='text-align:center;'> <img src='f1_LP_level0.png' /> </div>  </p> </td><td class='td11' id='TBL-10-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 751 --><p class='noindent'><div style='text-align:center;'> <img src='f2_LP_level0.png' /> </div> </p></td>
+</tr><tr id='TBL-10-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-10-3-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-10-3-2' style='white-space:nowrap; text-align:center;'> <!-- l. 752 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_LP_level1.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-10-3-3' style='white-space:nowrap; text-align:center;'> <!-- l. 752 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_LP_level1.svg' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-10-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-10-4-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-10-4-2' style='white-space:nowrap; text-align:center;'> <!-- l. 753 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_LP_level0.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-10-4-3' style='white-space:nowrap; text-align:center;'> <!-- l. 753 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_LP_level0.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-15001r9'></a>
+<a id='x1-15002'></a>
+<figcaption class='caption'><span class='id'>Figure 9: </span><span class='content'>A demonstration of the shift-invariance of the LP. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/LP_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-15001r3  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 760 --><p class='indent'>   The LP is a frame expansion that generates an expanded (not critical)
+octave-band decomposition, and in some way, it can be considered one of the
+precursors of the dyadic DWT. Unlike in the DWT, such expansion is consequence of
+that the filters used for creating the LP are not orthogonal and therefore, they do not
+cancel the aliasing between them (see this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/LP_is_not_critical.ipynb'>notebook</a>) when their downsampled
+outputs are added.
+</p><!-- l. 768 --><p class='indent'>   As a consequence of that the downsampling can not be used without violating the
+perfect reconstruction, the redundancy in the LP tends to 2 with the number of
+levels of the pyramid, which affects negatively to the compression ratio.
+On the contrary, an advantage of this is that the LP is shift-invariant in
+the high-frequency subband (see the Fig. <a href='#x1-15001r9'>9<!-- tex4ht:ref: fig:LP  --></a>), and of course, like the DWT,
+in the low-frequency subband when the motion is a multiple of 2 (see the
+Fig. <a href='#x1-15001r9'>9<!-- tex4ht:ref: fig:LP  --></a>)..
+</p>
+   <figure class='figure' id='-a-demonstration-of-the-near-shiftinvariance-in-the-h-subband-of-the-pdwt-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainpdwtshiftinvarianceipynbnotebook-1'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-11'><colgroup id='TBL-11-1g'><col id='TBL-11-1' /><col id='TBL-11-2' /><col id='TBL-11-3' /></colgroup><tr id='TBL-11-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-11-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 780 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_iH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-11-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 780 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_iH.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-11-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 780 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_iH.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-11-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-11-2-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-11-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 781 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_iH.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-11-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 781 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_iH.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-15003r10'></a>
+<a id='x1-15004'></a>
+<figcaption class='caption'><span class='id'>Figure 10: </span><span class='content'>A demonstration of the near shift-invariance in the [H] subband of
+the PDWT. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/PDWT_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-15003r3  -->
+                                                                  
+
+                                                                  
+   </figure>
+   <h4 class='subsectionHead' id='pyramid-dwt-pdwt1'><span class='titlemark'>3.4   </span> <a id='x1-160003.4'></a>Pyramid DWT (PDWT)</h4>
+<!-- l. 790 --><p class='noindent'>Inspired in the LP, we can estimate and componsensate the motion in an alternative
+representation of the DWT decomposition, that we have called Pyramid DWT.
+In fact, a PDWT decomposition is a special case of a LP where the filters
+are (bi)orthogonal DWT filters (in this case, we say that the LP is a tight
+frame and therefore, it can be downsampled without lossing the perfect
+reconstruction).
+</p><!-- l. 797 --><p class='indent'>   The 1-levels PDWT (that has two levels in its pyramid) of the frame \(X\) is defined
+by \begin {equation}  \{L, [H]\} = \{LL, \text {DWT}^{-1}(0, LH, HL, HH)\} = \{LL, \text {DWT}^{-1}(0, H)\}, \label {eq:PDWT}  \end {equation}
+where \begin {equation}  \{LL, LH, HL, HH\} = \text {DWT}(X). \label {eq:DWT}  \end {equation}
+</p><!-- l. 809 --><p class='indent'>   The \(S\) levels CS-LPT\(^S\) is computed simply by appliying the Eq. <span class='ecbx-1000'>??</span> to the subband \(L\),
+recursively.
+</p>
+   <figure class='figure' id='-prediction-error-between-frames-and-in-the-pdwt-domain-left-and-the-dwt-domain-right-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainpdwtshiftinvarianceipynbnotebook-the-prediction-error-between-frames-and-is-zero-remember-that-we-transmit-h-not-h-1'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-12'><colgroup id='TBL-12-1g'><col id='TBL-12-1' /><col id='TBL-12-2' /></colgroup><tr id='TBL-12-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-12-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 815 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_iH_error.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-12-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 816 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_LHHLHH_error.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-16001r11'></a>
+<a id='x1-16002'></a>
+<figcaption class='caption'><span class='id'>Figure 11: </span><span class='content'>Prediction error between frames 0 and 1, in the PDWT domain (left)
+and the DWT domain (right). See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/PDWT_shift_invariance.ipynb'>notebook</a>. The prediction error between
+frames 0 and 2 is zero. Remember that we transmit \(H\), not \([H]\).
+</span></figcaption><!-- tex4ht:label?: x1-16001r3  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 825 --><p class='indent'>   The PDWT is only near shift-invariant as it can be seen in the Fig. <a href='#x1-15003r10'>10<!-- tex4ht:ref: fig:PDWT  --></a>. However,
+it has several advantages:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-16004x1'>The CS-LPT is as compact as the DWT.
+     </li>
+<li class='enumerate' id='x1-16006x2'>The phases are not considered, which simplifies the ME/MC process and
+     enables the use of any DWT filter.
+     </li>
+<li class='enumerate' id='x1-16008x3'>The error generated by the lack of shift-invariance for the odd-type motion
+     is smaller than for the DWT (see Fig. <a href='#x1-4005r1'>1<!-- tex4ht:ref: fig:DWT  --></a>). As it can be seen in the Fig <a href='#x1-16001r11'>11<!-- tex4ht:ref: fig:PDWT_error  --></a>,
+     the energy of the error is the same in \([H]\) and \(H\), but the energy is concentrated
+     in only one critical subband (HL).</li></ol>
+   <h4 class='subsectionHead' id='mc-in-the-pdwt-domain1'><span class='titlemark'>3.5   </span> <a id='x1-170003.5'></a>MC in the PDWT domain</h4>
+<!-- l. 840 --><p class='noindent'>It’s reasonable to expect that the motion of an object between the frames \(R\) and \(P\) must
+move their low and the high frecuencies in the same amount of pixels. With
+this idea in mind, we estimate the motion in the \([H]\) subband using only the
+information provided by the low-frequency subband \(L\). More concretely, we
+implement:
+</p>
+   <figure class='figure' id='-a-demonstration-of-the-near-shiftinvariance-in-the-l-pdwt-subband-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmcindwtdomainillshiftinvarianceipynbnotebook-1'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class='tabular'> <table class='tabular' id='TBL-13'><colgroup id='TBL-13-1g'><col id='TBL-13-1' /><col id='TBL-13-2' /><col id='TBL-13-3' /></colgroup><tr id='TBL-13-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-13-1-1' style='white-space:nowrap; text-align:center;'> <!-- l. 849 --><p class='noindent'><div style='text-align:center;'> <img src='f0_haar_iL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-13-1-2' style='white-space:nowrap; text-align:center;'> <!-- l. 849 --><p class='noindent'><div style='text-align:center;'> <img src='f1_haar_iL.png' /> </div>                                                                    </p></td><td class='td11' id='TBL-13-1-3' style='white-space:nowrap; text-align:center;'> <!-- l. 849 --><p class='noindent'><div style='text-align:center;'> <img src='f2_haar_iL.png' /> </div>                                                                    </p></td>
+</tr><tr id='TBL-13-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-13-2-1' style='white-space:nowrap; text-align:center;'>                                                                     </td><td class='td11' id='TBL-13-2-2' style='white-space:nowrap; text-align:center;'> <!-- l. 850 --><p class='noindent'><div style='text-align:center;'> <img src='f0_1_haar_iL.svg' /> </div>                                                                    </p></td><td class='td11' id='TBL-13-2-3' style='white-space:nowrap; text-align:center;'> <!-- l. 850 --><p class='noindent'><div style='text-align:center;'> <img src='f0_2_haar_iL.svg' /> </div>                                                                    </p></td></tr></table>
+</div> <a id='x1-17001r12'></a>
+<a id='x1-17002'></a>
+<figcaption class='caption'><span class='id'>Figure 12: </span><span class='content'>A demonstration of the near shift-invariance in the [L] (PDWT)
+subband. See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/iLL_shift_invariance.ipynb'>notebook</a>.
+</span></figcaption><!-- tex4ht:label?: x1-17001r3  -->
+                                                                  
+
+                                                                  
+   </figure>
+     <ol class='enumerate1'>
+<li class='enumerate' id='x1-17004x1'>In order to increase the accuracy of the ME (see the Fig. <a href='#x1-17001r12'>12<!-- tex4ht:ref: fig:iL  --></a>, we interpolate the
+     low-frequency subbands of \(R\) and \(P\): \begin {equation}  [P.L] = \text {DWT}^{-1}(P.L, 0),  \end {equation}
+     \begin {equation}  [R.L] = \text {DWT}^{-1}(R.L, 0).  \end {equation}
+     </li>
+<li class='enumerate' id='x1-17006x2'>Estimate the motion between \([P.L]\) and \([R.L]\). The output of this step is a
+     motion vectors field \(\overset {[P.L]\rightarrow [R.L]}{V}\), that describes how to project the \([P.L]\) onto \([R.L]\).
+     Notice that \(\overset {[P.L]\rightarrow [R.L]}{V}\) should also be a good candidate for mapping \(P\) onto
+     \(R\).<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-17007f4'></a>
+     </li>
+<li class='enumerate' id='x1-17009x3'>Use \(\overset {[P.L]\rightarrow [R.L]}{V}\) and \([R.L]\) to generate a prediction \([\hat {P}.L]\), and \([R.H]\) to generate a prediction \([\hat {P}.H]\). We define
+     the prediction error in the low-frequency subband as \begin {equation}  [E.L] = [P.L] - [\hat {P}.L], \label {eq:prediction_error_L}  \end {equation}
+     and the prediction error in the high-frequency subband as \begin {equation}  [E.H] = [P.H] - [\hat {P}.H]. \label {eq:prediction_error}  \end {equation}
+     Notice that \(\overset {[P.L]\rightarrow [R.L]}{V}\) depends only on \(R.L\) and \(P.L\), not on the high frequency subbands.
+     </li>
+<li class='enumerate' id='x1-17011x4'>Compute the Element-Wise (EW) minimum of \([P.L]\) and \([E.L]\): \begin {equation}  \{[T],[M]\} = \text {EW-min}([P.L], [E.L]) \label {eq:EW-min}  \end {equation}
+     where \begin {equation}  [T]_{i,j}=\text {min}([P.L]_{i,j}, [E.L]_{i,j})  \end {equation}
+     and \([M]\) is a binary matrix defined by \begin {equation}  [M]_{i,j} = \left \{ \begin {array}{ll} 0 &amp; \text {if}~[P.L]_{i,j} &lt; [E.L]_{i,j} ~(\text {I-type~coefficient})\\ 1 &amp; \text {otherwise}~(\text {P-type~coefficient}). \end {array} \right . \label {eq:matrix}  \end {equation}
+     </li>
+<li class='enumerate' id='x1-17013x5'>
+     <!-- l. 917 --><p class='noindent'>Output \begin {equation}  [O]_{i,j} = \left \{ \begin {array}{ll} [P.H]_{i,j} &amp; \text {if}~[M]_{i,j} = 0~(\text {I-type~coefficient})\\ {[}E.H{]}_{i,j} &amp; \text {otherwise}~(\text {P-type~coefficient}). \end {array} \right . \label {eq:output}  \end {equation}
+     Realize that it must hold that \begin {equation}  \sigma ^2_O \le \sigma ^2_E, \label {eq:vars}  \end {equation}
+     where \(\sigma ^2\) denotes the variance, \(O=\text {DWT}([O])\), and \(E=\text {DWT}([O])\). Eq. <span class='ecbx-1000'>??</span> implies that \begin {equation}  \text {CR}_O \ge \text {CR}_E \label {eq:crs}  \end {equation}
+     should hold, where CR stands for Compression Ratio.
+     </p><!-- l. 940 --><p class='noindent'>\(O\) is the high-frequency subband that we will send from the encoder to the
+     decoder, and it can be seen, it is composed of prediction error coefficients
+     and original coefficients. Making a comparison with the procedure
+     followed in most video coding standards, the prediction error coefficients
+                                                                  
+
+                                                                  
+     represent predicted blocks (P-type blocks) or skipped blocks (S-type
+     blocks)<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-17014f5'></a>,
+     and the original coefficients are equivalent to the intra(coded) blocks (I-type
+     blocks).</p></li></ol>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>4   </span> <a id='x1-180004'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xandreopoulos2005complete'></a>Y. Andreopoulos,  A. Munteanu,  Van  der  A.G.,  J.P.H.  Cornelis,  and
@@ -207,24 +793,45 @@ applications.
    </span><span class='ecti-1000'>Sydney</span>, 2003.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xli2001all'></a>X. Li,  L. Kerofsky,  and  S. Lei.     <a href='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.79.7108&amp;rep=rep1&amp;type=pdf'>All-phase  motion  compensated
+ [3]<span class='bibsp'>   </span></span><a id='Xburt1987laplacian'></a>P.J. Burt and E.H. Adelson. <a href='https://www.seas.upenn.edu/~cse399b/LaplacianPyramid.pdf'>The Laplacian Pyramid as a Compact Image
+   Code</a>.  <span class='ecti-1000'>IEEE Transactions on Communications</span>, COM-31(4):532–540, April
+   1983.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [5]<span class='bibsp'>   </span></span><a id='Xli2001all'></a>X. Li,  L. Kerofsky,  and  S. Lei.     <a href='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.79.7108&amp;rep=rep1&amp;type=pdf'>All-phase  motion  compensated
    prediction in the wavelet domain for high performance video coding</a>.   In
    <span class='ecti-1000'>Proceedings 2001 International Conference on Image Processing (Cat. No.
    </span><span class='ecti-1000'>01CH37205)</span>, volume 3, pages 538–541. IEEE, 2001.
    </p>
+   <p class='bibitem'><span class='biblabel'>
+ [6]<span class='bibsp'>   </span></span><a id='Xmallat1999wavelet'></a>S. Mallat and G. Peyré.  <a href='http://links.uwaterloo.ca/amath391w13docs/Mallat3.pdf'><span class='ecti-1000'>A Wavelet Tour of Signal Processing: The
+   </span><span class='ecti-1000'>Sparse Way</span></a>. Elsevier, 2009.
                                                                   
 
                                                                   
-   <p class='bibitem'><span class='biblabel'>
- [4]<span class='bibsp'>   </span></span><a id='Xmallat1999wavelet'></a>S. Mallat and G. Peyré.  <a href='http://links.uwaterloo.ca/amath391w13docs/Mallat3.pdf'><span class='ecti-1000'>A Wavelet Tour of Signal Processing: The
-   </span><span class='ecti-1000'>Sparse Way</span></a>. Elsevier, 2009.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [5]<span class='bibsp'>   </span></span><a id='Xpark2000motion'></a>H.-W. Park and H.-S. Kim.  <a href='https://pdfs.semanticscholar.org/48c6/4583590528e1af327f6a31e56123d4abc4e6.pdf?_ga=2.85498713.1311541910.1610981476-741442228.1604850032'>Motion Estimation Using Low-Band-Shift
+ [7]<span class='bibsp'>   </span></span><a id='Xpark2000motion'></a>H.-W. Park and H.-S. Kim.  <a href='https://pdfs.semanticscholar.org/48c6/4583590528e1af327f6a31e56123d4abc4e6.pdf?_ga=2.85498713.1311541910.1610981476-741442228.1604850032'>Motion Estimation Using Low-Band-Shift
    Method for Wavelet-Based Moving-Picture Coding</a>.  <span class='ecti-1000'>IEEE Transactions on
    </span><span class='ecti-1000'>Image processing</span>, 9(4):577–587, 2000.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [8]<span class='bibsp'>   </span></span><a id='Xsullivan2012overview'></a>G.J. Sullivan, J. Ohm, Woo-Jin Han, and T. Wiegand. <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6316136'>Overview of the
+   High Efficiency Video Coding (HEVC) standard</a>.  <span class='ecti-1000'>Circuits and Systems for
+   </span><span class='ecti-1000'>Video Technology, IEEE Transactions on</span>, 22(12):1649–1668, Dec 2012.
 </p>
    </div>
-    
+   <div class='footnotes'><!-- l. 384 --><p class='noindent'><span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Notice also that the number of vectors in</span> \(\overset {[P.L]\rightarrow [L.L]}{V}\) <span class='ecrm-0800'>can be as high as the number of pixels in</span> \(R\) <span class='ecrm-0800'>(and</span> \(P\)<span class='ecrm-0800'>),
+</span><span class='ecrm-0800'>although this will depend on the accuracy of the ME/MC.</span></p>
+<!-- l. 454 --><p class='noindent'><span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>S-type blocks are an special case of P-type blocks that have a prediction error so small that is
+</span><span class='ecrm-0800'>more beneficial not to send their texture.</span></p><!-- l. 486 --><p class='indent'> <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>To avoid the lack of shift-invariance of the DWT.</span></p>
+<!-- l. 878 --><p class='noindent'><span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice also that the number of vectors in</span> \(\overset {[P.L]\rightarrow [L.L]}{V}\) <span class='ecrm-0800'>can be as high as the number of pixels in</span> \(R\) <span class='ecrm-0800'>(and</span> \(P\)<span class='ecrm-0800'>),
+</span><span class='ecrm-0800'>although this will depend on the accuracy of the ME/MC.</span></p>
+<!-- l. 948 --><p class='noindent'><span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>S-type blocks are an special case of P-type blocks that have a prediction error so small that is
+</span><span class='ecrm-0800'>more beneficial not to send their texture.</span></p>                                                                    </div>
+ 
 </body> 
 </html>
